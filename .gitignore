@@ -1,0 +1,36 @@
+.env
+node_modules/
+dist/
+.playwright-cli/
+.workspace/
+output/
+learning_metrial/
+materials/
+
+# Local credentials, dependencies and generated files
+.env
+.env.*
+!.env.example
+.scratch/
+.codex-runtime/
+.playwright-cli/
+.pytest_cache/
+__pycache__/
+.venv*/
+node_modules/
+dist/
+build/
+output/
+artifacts/
+var/
+.workspace/
+.tmp-workspace/
+*.log
+*.err
+*.tsbuildinfo
+*.pyc
+
+# Never publish local credentials or runtime data
+.secrets/
+data/
+tls/
