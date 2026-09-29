@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chunk Lab / 电商文档审阅台</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="related-chunk-workspace.css?v=related1" />
+  <link rel="icon" type="image/png" href="/logo.png">
+</head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <button class="icon-button" id="toggleRail" title="收起文件栏" aria-label="收起文件栏" aria-controls="fileRail" aria-expanded="true">☰</button>
+        <div class="brand"><img src="/logo.png" alt="" width="42" height="42" style="object-fit:contain;flex-shrink:0"><strong>Chunk Lab</strong><span>电商文档审阅台</span></div>
+        <div class="top-actions">
+          <span id="saveState" class="save-state" aria-live="polite">未保存</span>
+          <label class="export-contract">契约<select id="exportContract"><option value="2.1">2.1</option><option value="legacy">Legacy</option></select></label>
+          <button class="ghost-button" id="exportButton" disabled>导出 JSON</button>
+          <button class="ghost-button" id="manifestButton" disabled>下载 Manifest</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="file-rail" id="fileRail">
+          <div class="rail-head"><div><span class="eyebrow">PARSE BATCH</span><h1>工作文件</h1></div><span class="count" id="batchCount">0</span></div>
+          <div class="upload-zone" id="dropZone">
+            <input id="fileInput" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.docx,.pptx,.xlsx,.md,.txt" hidden />
+            <button class="primary-button" id="pickFiles">添加文档</button>
+            <span>或拖放到此处</span>
+          </div>
+          <details class="parse-options" open>
+            <summary>解析设置</summary>
+            <label>模型<select id="modelVersion"><option value="vlm">VLM 高质量</option><option value="pipeline">Pipeline</option></select></label>
+            <label>语言<select id="parseLanguage"><option value="ch">中英混合</option><option value="en">英文</option></select></label>
+            <div class="checks"><label><input id="ocrEnabled" type="checkbox" checked />OCR</label><label><input id="tableEnabled" type="checkbox" checked />表格</label><label><input id="formulaEnabled" type="checkbox" />公式</label></div>
+          </details>
+          <div class="rail-actions"><button class="primary-button" id="parseButton" disabled>开始解析</button></div>
+          <div id="batchError" class="error-box hidden" role="alert" aria-live="assertive" tabindex="-1"></div>
+          <div class="file-list" id="fileList"><div class="empty">暂无文件</div></div>
+          <details class="history-panel"><summary>历史处理文件</summary><div id="historyList"></div><div id="historyPager" class="history-pager"></div></details>
+          <div class="rail-foot"><span class="status-dot"></span>临时工作区 <span>24H</span></div>
+        </aside>
+
+        <section class="document-stage">
+          <div class="stage-head">
+            <div><span class="eyebrow">ORIGINAL DOCUMENT</span><h2 id="docTitle">等待文档</h2></div>
+            <div class="stage-meta"><span id="sourceStatus" aria-live="polite">未载入</span><button class="icon-button" id="clearSelection" title="清除来源锁定" aria-label="清除来源锁定">×</button></div>
+          </div>
+          <div class="page-nav" id="pageNav"></div>
+          <div class="view-toolbar" aria-label="来源视图与缩放">
+            <div class="source-view-tabs" id="sourceViewTabs" role="tablist" aria-label="来源视图"></div>
+            <label class="page-jump">页码<input id="pageInput" type="number" min="1" value="1" /></label>
+            <button class="icon-button" id="previousPage" title="上一页" aria-label="上一页">↑</button>
+            <button class="icon-button" id="nextPage" title="下一页" aria-label="下一页">↓</button>
+            <div class="zoom-controls" role="group" aria-label="缩放">
+              <button class="icon-button" id="zoomOut" title="缩小" aria-label="缩小">−</button>
+              <button class="ghost-button" id="zoomFit">适宽</button>
+              <button class="ghost-button" id="zoomActual">实际大小</button>
+              <button class="icon-button" id="zoomIn" title="放大" aria-label="放大">+</button>
+            </div>
+          </div>
+          <div class="source-toolbar" id="sourceToolbar">
+            <div class="annotation-status">
+              <span id="selectionCount">未选择来源</span>
+              <span id="annotationSaveState">等待标注</span>
+            </div>
+            <div class="annotation-tools" id="annotationTools" role="toolbar" aria-label="人工标注工具">
+              <button class="tool-button active" data-annotation-tool="select" title="选择" aria-label="选择">↖</button>
+              <button class="tool-button" data-annotation-tool="draw" title="新建文本框" aria-label="新建文本框">□</button>
+              <button class="toolbar-command" data-annotation-tool="marquee" title="框选多个 Block">批选</button>
+              <button class="toolbar-command" data-annotation-tool="watermark" title="批量清理水印">清水印</button>
+              <label class="annotation-type" title="修改类型"><span>类型</span><select id="annotationType"><option value="text">文本</option><option value="heading">标题</option><option value="table">表格</option><option value="image">图片</option><option value="list">列表</option><option value="formula">公式</option><option value="code">代码</option><option value="warning">警告</option><option value="caption">图注</option></select></label>
+              <button class="toolbar-command" data-annotation-action="merge" title="合并选中的来源框">合并</button>
+              <button class="toolbar-command" data-annotation-action="split" title="恢复合并前的来源框">拆分</button>
+              <button class="toolbar-command" id="generateManualPage" title="生成当前页有效来源框对应的 Chunk">生成当前页</button>
+              <button class="tool-button" data-annotation-action="exclude" title="切换排除" aria-label="排除">⊘</button>
+              <button class="tool-button" data-annotation-action="delete" title="删除框" aria-label="删除框">⌫</button>
+              <button class="tool-button" data-annotation-action="undo" title="撤销" aria-label="撤销">↶</button>
+              <button class="tool-button" data-annotation-action="redo" title="重做" aria-label="重做">↷</button>
+            </div>
+            <div class="source-review-tools" id="sourceReviewTools">
+              <button data-source-action="create" disabled>创建 Chunk</button>
+              <button data-source-action="add" disabled>加入当前 Chunk</button>
+              <button data-source-action="remove" disabled>移出当前 Chunk</button>
+            </div>
+          </div>
+          <div class="page-scroll" id="pageScroll">
+            <div class="document-empty"><strong>原文页将在这里显示</strong><span>上传文档并完成解析后查看原文。</span></div>
+          </div>
+        </section>
+
+        <div class="workspace-resizer" id="workspaceResizer" role="separator" aria-label="调整原文和分块区域宽度" aria-orientation="vertical" tabindex="0" title="拖动调整原文和分块区域宽度"></div>
+
+        <section class="chunk-workspace" id="chunkWorkspace" aria-busy="false">
+          <section class="config-panel" id="configPanel">
+            <div class="config-summary-row">
+              <button class="config-disclosure-toggle" id="configDisclosureToggle" type="button" aria-expanded="true" aria-controls="configDisclosureContent">
+                <span class="disclosure-arrow" aria-hidden="true">▾</span>
+                <span class="config-summary-copy"><span class="eyebrow">CONFIGURATION DRAFT</span><strong>切分配置</strong><span id="configDigest">待生成</span></span>
+              </button>
+              <label class="pin-config"><input id="pinConfigOpen" type="checkbox"> 固定展开</label>
+              <span id="configState" class="state-chip">待生成</span>
+            </div>
+            <div id="configDisclosureContent" class="config-disclosure-content">
+              <div class="config-grid">
+                <label>策略<select id="strategySelect"><option value="parent-child">父子分块</option><option value="manual">人工框选切分</option><option value="structure">Structure-Aware</option><option value="sentence">SentenceSplitter</option><option value="token">TokenTextSplitter</option><option value="semantic">Semantic Boundary</option></select></label>
+                <label>图片<select id="imagePolicy"><option value="summary">摘要 + 引用</option><option value="reference">仅引用</option><option value="exclude">排除</option></select></label>
+              </div>
+              <p class="strategy-hint" id="strategyHint"></p>
+              <div class="params" id="params"></div>
+              <button class="primary-button generate-button" id="generatePreview" disabled>应用参数并生成预览</button>
+            </div>
+          </section>
+
+          <section class="metrics-panel" id="metricsPanel">
+            <button class="metrics-disclosure-toggle hidden" id="metricsDisclosureToggle" type="button" aria-expanded="true" aria-controls="metricsDisclosureContent"><span class="disclosure-arrow" aria-hidden="true">▾</span><span>质量指标</span><span id="metricsDigest"></span></button>
+            <div id="metricsDisclosureContent" class="metrics-disclosure-content"><div class="metrics" id="metrics"></div></div>
+          </section>
+          <div class="mode-bar">
+            <div class="tabs" role="tablist" aria-label="Chunk 结果模式"><button class="tab active" role="tab" aria-selected="true" data-mode="preview">Preview</button><button class="tab" role="tab" aria-selected="false" data-mode="draft">Draft</button></div>
+            <label class="chunk-filter"><span>类型</span><select id="chunkTypeFilter" aria-label="筛选 Chunk 类型"><option value="all">全部</option><option value="paragraph">文本</option><option value="heading">标题</option><option value="list">列表</option><option value="table">表格</option><option value="image">图片</option><option value="formula">公式</option><option value="code">代码</option><option value="warning">警告</option><option value="caption">图注</option><option value="footnote">脚注</option></select></label>
+            <div class="mode-actions"><button class="primary-button" id="quickIngestButton" disabled>向量化并入库</button><button class="ghost-button hidden" id="discardPreview">放弃 Preview</button><button class="placeholder-action hidden" id="spuMaterialButton">分配资料归属</button><button class="placeholder-action hidden" id="markdownButton">生成 Markdown</button><button class="placeholder-action hidden" id="embeddingButton">生成 Embedding</button><button class="placeholder-action hidden" id="databaseButton">写入数据库</button><button class="placeholder-action" id="chunkSearchButton" disabled>分块检索测试</button><button class="placeholder-action hidden" id="retrievalButton">检索验证</button><button class="primary-button" id="confirmPreview" disabled>确认切分并进入修订</button></div>
+          </div>
+          <div class="context-toolbar hidden" id="contextToolbar">
+            <span id="contextSelectionCount">未选择 Context 项</span>
+            <span class="context-progress" id="contextProgress" aria-live="polite"></span>
+            <button class="ghost-button" id="clearContextSelection">清除</button>
+            <button class="ghost-button" id="generatePageContext">生成当前页候选</button>
+            <button class="primary-button" id="generateSelectedContext" disabled>生成已选 Context</button>
+          </div>
+          <div class="context-toolbar hidden" id="reviewProgressToolbar">
+            <span id="reviewProgressCount">已处理 0 / 0</span>
+            <button class="ghost-button" id="markToHereButton">标记到这里</button>
+            <button class="ghost-button" id="unmarkSelectedButton">撤销选中完成</button>
+          </div>
+
+          <div class="review-body">
+            <div class="chunk-list" id="chunkList"><div class="empty">生成 Preview 后查看 Chunk</div></div>
+            <aside class="detail-panel" id="detailPanel">
+              <div class="detail-empty">选择一个 Chunk 查看详情</div>
+            </aside>
+          </div>
+        </section>
+      </main>
+      <dialog class="integration-dialog" id="quickIngestDialog">
+        <form method="dialog">
+          <div class="dialog-head"><div><span class="eyebrow">SAVE TO KNOWLEDGE BASE</span><h2>向量化并入库</h2></div><button class="icon-button" id="closeQuickIngest" value="cancel" aria-label="关闭">×</button></div>
+          <p>使用当前切块策略，依次完成切分、向量化和入库。人工审阅、Context 增强和商品归属均为可选步骤。</p>
+          <label>Embedding 模型<select id="quickEmbeddingProfile"></select></label>
+          <label>目标数据库<select id="quickDatabaseProfile"></select></label>
+          <p id="quickIngestStatus" role="status" aria-live="polite"></p>
+          <div id="quickIngestItems" class="integration-items"></div>
+          <button type="button" class="primary-button" id="startQuickIngest">开始入库</button>
+        </form>
+      </dialog>
+      <dialog class="integration-dialog" id="integrationDialog">
+        <form method="dialog">
+          <div class="dialog-head"><div><span class="eyebrow">INTEGRATION</span><h2 id="integrationTitle">选择接口</h2></div><button class="icon-button" value="cancel" aria-label="关闭">×</button></div>
+          <label id="integrationLabel">配置<select id="integrationSelect"></select></label>
+          <div id="spuMaterialFields" class="spu-material-fields hidden">
+            <div class="spu-scope-heading"><strong>资料归属 SPU</strong><span id="spuScopeState" class="scope-state">待确认</span></div>
+            <div class="segmented-control" id="spuAssignmentMode" role="tablist" aria-label="SPU 操作模式"><button type="button" class="segment active" id="selectExistingSpuMode" role="tab" aria-selected="true">选择已有 SPU</button><button type="button" class="segment" id="createNewSpuMode" role="tab" aria-selected="false">新建 SPU</button></div>
+            <div id="existingSpuFields" class="spu-mode-panel" role="tabpanel"><label>商品大类<select id="spuExistingCategory"><option value="">先选择商品大类</option></select></label><label>商品名称<input id="spuExistingName" type="search" autocomplete="off" placeholder="例如：Razer Viper V3 Pro" /></label><label>型号 / 系列（选填）<input id="spuExistingModel" type="search" autocomplete="off" placeholder="进一步缩小范围" /></label><div class="spu-matches" id="spuExistingMatches"><div class="empty">先选择商品大类</div></div></div>
+            <div id="newSpuFields" class="spu-mode-panel hidden" role="tabpanel">
+            <div class="spu-create-grid">
+              <label>商品名称<input id="spuProductName" type="text" autocomplete="off" placeholder="例如：毒蝰 V3 Pro" /></label>
+              <label>搜索商品大类<input id="spuCategorySearch" type="search" autocomplete="off" placeholder="名称或英文编码" /></label>
+              <label>商品大类<select id="spuCategorySelect"><option value="">请选择大类</option></select></label>
+              <label>品牌（选填）<input id="spuBrand" type="text" autocomplete="off" placeholder="例如：Razer" /></label>
+              <label>型号/系列（选填）<input id="spuModelSeries" type="text" autocomplete="off" placeholder="例如：Viper V3 Pro" /></label>
+            </div>
+            <button class="text-button" id="toggleSpuCategory" type="button">新增商品大类</button>
+            <div class="spu-new-category hidden" id="spuNewCategoryFields">
+              <label>类目名称<input id="spuCategoryName" type="text" autocomplete="off" /></label>
+              <label>英文编码<input id="spuCategoryCode" type="text" maxlength="8" autocomplete="off" /></label>
+              <button class="ghost-button" id="saveSpuCategory" type="button">保存类目</button>
+            </div>
+            <div class="spu-candidate" id="spuCandidateState">填写商品名称和大类后生成候选 SPU ID。</div>
+            <div class="spu-matches" id="spuMatches"></div></div>
+            <div class="spu-selected-section"><strong>已选 SPU</strong><div class="spu-selected-list" id="spuSelectedList"><div class="empty">尚未选择 SPU</div></div></div>
+            <label>资料类型<select id="spuDocumentType"><option value="manual">说明书</option><option value="specification">参数表</option><option value="installation">安装指南</option><option value="after_sales">售后政策</option><option value="mixed">混合资料</option><option value="other">其他</option></select></label>
+            <div class="spu-scope-actions"><button class="ghost-button" id="confirmSpuScope" type="button">确认资料归属</button><span id="spuScopeHint">确认后可逐个设置 Chunk 归属。</span></div>
+          </div>
+          <p id="integrationStatus">接口未接入</p>
+          <div class="integration-items" id="integrationItems"></div>
+              <div id="spuOutputConfig" class="output-config hidden"><strong>输出配置</strong><label>执行范围<select id="spuOutputMode"><option value="markdown">仅生成 Markdown</option><option value="markdown_embedding">Markdown + Embedding</option><option value="markdown_database">Markdown + 数据库写入</option><option value="all">全部执行</option></select></label></div><div class="dialog-actions"><button class="primary-button" id="saveIntegration" value="default">生成 Markdown</button></div>
+            </form>
+          </dialog>
+          <dialog class="integration-dialog retrieval-dialog" id="retrievalDialog">
+            <form method="dialog">
+              <div class="dialog-head"><div><span class="eyebrow">RETRIEVAL TEST</span><h2>RAG 检索测试</h2></div><button class="icon-button" value="cancel" aria-label="关闭">×</button></div>
+              <label>测试查询<input id="retrievalQuery" type="text" placeholder="输入检索问题" /></label>
+              <label>Top K<input id="retrievalK" type="number" min="1" max="100" value="5" /></label>
+              <label>相关 Chunk ID（每行一个）<textarea id="retrievalRelevantIds" rows="4" placeholder="填写人工确认相关的 Chunk ID"></textarea></label>
+              <p id="retrievalStatus">需要先完成 Embedding 和数据库入库。</p>
+              <p id="retrievalMeta" class="retrieval-meta"></p>
+              <div class="integration-items" id="retrievalItems"></div>
+              <div class="dialog-actions"><button class="primary-button" id="runRetrievalTest" value="default">运行 Recall@K</button></div>
+            </form>
+          </dialog>
+    </div>
+    <script type="module" src="app.js?v=v0.1.47"></script>
+  </body>
+</html>
