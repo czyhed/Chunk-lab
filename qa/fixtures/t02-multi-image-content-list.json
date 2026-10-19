@@ -1,0 +1,2978 @@
+[
+  {
+    "type": "text",
+    "text": "产品规格书",
+    "text_level": 1,
+    "bbox": [
+      380,
+      258,
+      614,
+      297
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "text",
+    "text": "Product Specification Document",
+    "text_level": 2,
+    "bbox": [
+      333,
+      320,
+      665,
+      340
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "text",
+    "text": "涵盖产品线：智能手机 | 笔记本电脑 | 耳机 | 平板电脑",
+    "bbox": [
+      264,
+      402,
+      732,
+      422
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "text",
+    "text": "编制单位：电商平台技术部",
+    "bbox": [
+      377,
+      510,
+      620,
+      530
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "text",
+    "text": "文档版本：V1.0",
+    "bbox": [
+      424,
+      539,
+      573,
+      559
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "text",
+    "text": "发布日期：2026年8月14日",
+    "bbox": [
+      367,
+      569,
+      627,
+      589
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "text",
+    "text": "CONFIDENTIAL",
+    "bbox": [
+      434,
+      647,
+      560,
+      662
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "page_number",
+    "text": "- 1",
+    "bbox": [
+      490,
+      941,
+      506,
+      954
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      898,
+      970,
+      991,
+      992
+    ],
+    "page_idx": 0
+  },
+  {
+    "type": "text",
+    "text": "一、产品概述",
+    "text_level": 2,
+    "bbox": [
+      111,
+      95,
+      277,
+      119
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "本文档为电商平台当前在售核心电子产品的技术规格说明书，涵盖智能手机、笔记本电脑、耳机及平板电脑四大品类。所有数据均来源于制造商官方技术文档，经电商平台技术部整理汇编，确保信息的准确性和一致性。",
+    "bbox": [
+      111,
+      169,
+      885,
+      260
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "1.1 智能手机产品线",
+    "text_level": 2,
+    "bbox": [
+      112,
+      323,
+      318,
+      345
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "本年度智能手机产品线覆盖三大主流品牌旗舰机型，包括：",
+    "bbox": [
+      111,
+      363,
+      576,
+      382
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• 三星 Galaxy S26 Ultra — 旗舰影像标杆，搭载 200MP 超感光主摄",
+    "bbox": [
+      140,
+      406,
+      700,
+      424
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• 小米 17 Pro — 性价比旗舰，三摄全能系统",
+    "bbox": [
+      140,
+      445,
+      517,
+      463
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• iPhone 16 Pro Max — 苹果生态巅峰，A18 Pro 芯片",
+    "bbox": [
+      140,
+      484,
+      589,
+      502
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "1.2 笔记本电脑产品线",
+    "text_level": 2,
+    "bbox": [
+      114,
+      561,
+      341,
+      584
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "笔记本电脑产品线涵盖轻薄本、专业工作站及全能商务本：",
+    "bbox": [
+      112,
+      602,
+      575,
+      619
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• Dell XPS 13 (2026) — 13.4 英寸 3.5K OLED 极致轻薄本",
+    "bbox": [
+      140,
+      646,
+      624,
+      662
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• MacBook Pro 16\" M3 Max — 专业级移动工作站",
+    "bbox": [
+      140,
+      684,
+      558,
+      700
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• Lenovo ThinkPad X9 15 — 商务旗舰全能本",
+    "bbox": [
+      140,
+      723,
+      524,
+      739
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "1.3 耳机产品线",
+    "text_level": 2,
+    "bbox": [
+      114,
+      801,
+      272,
+      821
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "耳机产品线覆盖开放式耳夹、入耳式降噪及头戴式旗舰：",
+    "bbox": [
+      111,
+      840,
+      558,
+      859
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• Sony LinkBuds Clip — 开放式耳夹设计，自适应降噪",
+    "bbox": [
+      140,
+      883,
+      596,
+      902
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "page_number",
+    "text": "2",
+    "bbox": [
+      491,
+      941,
+      506,
+      953
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      991
+    ],
+    "page_idx": 1
+  },
+  {
+    "type": "text",
+    "text": "• AirPods Pro 2 — H2 芯片，主动降噪，无缝生态",
+    "bbox": [
+      140,
+      94,
+      560,
+      111
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "text",
+    "text": "• Bose QuietComfort Ultra — 沉浸式空间音频旗舰",
+    "bbox": [
+      140,
+      132,
+      563,
+      148
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "text",
+    "text": "1.4 平板电脑产品线",
+    "text_level": 2,
+    "bbox": [
+      114,
+      210,
+      318,
+      231
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "text",
+    "text": "平板电脑产品线覆盖专业创作与影音娱乐双场景：",
+    "bbox": [
+      112,
+      250,
+      504,
+      268
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "text",
+    "text": "• iPad Pro M4 13\" — M4 芯片，Ultra XDR 显示屏",
+    "bbox": [
+      140,
+      294,
+      558,
+      311
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "text",
+    "text": "• 三星 Galaxy Tab S10 Ultra — 14.6 英寸巨幕，天玑 9300+",
+    "bbox": [
+      140,
+      333,
+      638,
+      349
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "page_number",
+    "text": "- 3",
+    "bbox": [
+      490,
+      941,
+      506,
+      953
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 2
+  },
+  {
+    "type": "text",
+    "text": "二、详细规格表",
+    "text_level": 2,
+    "bbox": [
+      112,
+      95,
+      303,
+      121
+    ],
+    "page_idx": 3
+  },
+  {
+    "type": "text",
+    "text": "2.1 智能手机规格对比",
+    "text_level": 2,
+    "bbox": [
+      112,
+      181,
+      341,
+      204
+    ],
+    "page_idx": 3
+  },
+  {
+    "type": "table",
+    "img_path": "images/8c1899c9de421d08b7590ddca7a318af37d1874e4f6b2469726fe57e7929a53c.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>参数</td><td>三星 Galaxy S26 Ultra</td><td>小米 17 Pro</td><td>iPhone 16 Pro Max</td></tr><tr><td>屏幕尺寸</td><td>6.9&quot;</td><td>6.3&quot;</td><td>6.9&quot;</td></tr><tr><td>分辨率</td><td>3120x1440</td><td>2656x1220</td><td>2868x1320</td></tr><tr><td>主摄像头</td><td>200MP f/1.4</td><td>三摄系统</td><td>48MP</td></tr><tr><td>处理器</td><td>Snapdragon 8 Elite Gen 5 (3nm)</td><td>Snapdragon 8 Elite Gen 5</td><td>A18 Pro</td></tr><tr><td>内存/存储</td><td>12GB/256GB 起</td><td>12GB/256GB</td><td>8GB/256GB</td></tr><tr><td>电池容量</td><td>5000mAh</td><td>未公开</td><td>4685mAh</td></tr><tr><td>防护等级</td><td>IP68</td><td>未公开</td><td>IP68</td></tr><tr><td>价格</td><td>$1,299</td><td>$729</td><td>$1,199</td></tr></table>",
+    "bbox": [
+      104,
+      244,
+      890,
+      540
+    ],
+    "page_idx": 3
+  },
+  {
+    "type": "text",
+    "text": "2.2 笔记本电脑规格对比",
+    "text_level": 2,
+    "bbox": [
+      112,
+      584,
+      362,
+      604
+    ],
+    "page_idx": 3
+  },
+  {
+    "type": "table",
+    "img_path": "images/2ac56d503725229e146c58de9b0aeb3cb20295cc73ac7e4c36cdf74f87bf47dc.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>参数</td><td>Dell XPS 13 (2026)</td><td>MacBook Pro 16&quot; M3 Max</td><td>Lenovo ThinkPad X9 15</td></tr><tr><td>屏幕</td><td>13.4&quot; 3.5K OLED 3456x2160</td><td>16.2&quot; Liquid Retina XDR</td><td>15&quot; OLED</td></tr><tr><td>处理器</td><td>Intel Core Ultra 7 155H</td><td>M3 Max 16 核 CPU 40 核 GPU</td><td>Intel Core Ultra 7</td></tr><tr><td>内存</td><td>16GB LPDDR5x</td><td>36GB 统一内存</td><td>32GB</td></tr><tr><td>存储</td><td>1TB PCIe 4.0</td><td>1TB SSD</td><td>1TB</td></tr><tr><td>价格</td><td>$1,299</td><td>$3,499</td><td>$1,899</td></tr></table>",
+    "bbox": [
+      104,
+      645,
+      890,
+      867
+    ],
+    "page_idx": 3
+  },
+  {
+    "type": "page_number",
+    "text": "4",
+    "bbox": [
+      491,
+      941,
+      504,
+      953
+    ],
+    "page_idx": 3
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 3
+  },
+  {
+    "type": "text",
+    "text": "三、产品图片区域",
+    "text_level": 2,
+    "bbox": [
+      112,
+      95,
+      330,
+      119
+    ],
+    "page_idx": 4
+  },
+  {
+    "type": "text",
+    "text": "3.1 智能手机产品图片",
+    "text_level": 2,
+    "bbox": [
+      112,
+      181,
+      341,
+      204
+    ],
+    "page_idx": 4
+  },
+  {
+    "type": "image",
+    "img_path": "images/58b96e02e2b34150a8a2a3f630d28d84aa29406bb5ab4113696621d2b1fdb574.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "",
+      "产品描述：6.9英寸Dynamic AMOLED 2X曲面屏，钛金属中框，磨砂玻璃背板，四摄模组居中排列。"
+    ],
+    "content": "",
+    "bbox": [
+      114,
+      244,
+      882,
+      827
+    ],
+    "page_idx": 4
+  },
+  {
+    "type": "page_number",
+    "text": "5",
+    "bbox": [
+      491,
+      941,
+      506,
+      954
+    ],
+    "page_idx": 4
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      990,
+      992
+    ],
+    "page_idx": 4
+  },
+  {
+    "type": "text",
+    "text": "Galaxy S26 Ultra 购机礼遇",
+    "text_level": 1,
+    "bbox": [
+      215,
+      157,
+      782,
+      200
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "256GB:",
+    "bbox": [
+      303,
+      258,
+      370,
+      277
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "白条12期免息，日付低至27.4元起",
+    "bbox": [
+      395,
+      256,
+      717,
+      279
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "512GB/ITB:",
+    "bbox": [
+      292,
+      290,
+      385,
+      309
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "店铺优惠1000元",
+    "bbox": [
+      397,
+      287,
+      555,
+      311
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "学生下单再减100元",
+    "text_level": 2,
+    "bbox": [
+      163,
+      337,
+      390,
+      363
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "image",
+    "img_path": "images/6a6234d37da28d1eab2923062ad347ef6ec6e7ad0dad57a426d3d45e89f4e83c.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      776,
+      338,
+      834,
+      378
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "(\\*1TB不享有学生价)",
+    "bbox": [
+      165,
+      364,
+      297,
+      381
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "会员首购",
+    "bbox": [
+      165,
+      407,
+      246,
+      428
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "领20元京东E卡 (\\*数量有限，先到先得)",
+    "bbox": [
+      165,
+      429,
+      318,
+      464
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "image",
+    "img_path": "images/2a822ea9da0c1952b0210be7db053bd0920d8d2ccccdbd425a95db762e4a8f36.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      401,
+      412,
+      478,
+      448
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "会员购机满额",
+    "bbox": [
+      539,
+      407,
+      660,
+      428
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "至高领100元京东E卡 (\\*数量有限，先到先得)",
+    "bbox": [
+      537,
+      429,
+      738,
+      463
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "image",
+    "img_path": "images/929329e1ddc038924f31c775a69e66b5a52f8fcacacdf3c29767a0347425c38f.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      764,
+      412,
+      843,
+      448
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "会员购机抽奖",
+    "bbox": [
+      165,
+      476,
+      287,
+      496
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "至高赢价值10,296元3C数码套装",
+    "bbox": [
+      163,
+      501,
+      519,
+      526
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "image",
+    "img_path": "images/0d7d9de6377636117939146b649e273caab6aa4a73fbaa63dbd8fb57a4e933f2.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      761,
+      479,
+      844,
+      527
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "购手价享耳机|平板|手表|手环|手机壳|膜等配件5折起 (\\*详询客服领取优惠券)",
+    "bbox": [
+      163,
+      553,
+      750,
+      595
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "image",
+    "img_path": "images/9f321f8a607bee276f5536b805c2460117c523b902a58d09c06278d4c5626d51.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      767,
+      554,
+      849,
+      592
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "page_number",
+    "text": "6",
+    "bbox": [
+      491,
+      941,
+      506,
+      954
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 5
+  },
+  {
+    "type": "text",
+    "text": "Galaxy S26 Ultra 五大卖点",
+    "text_level": 2,
+    "bbox": [
+      250,
+      117,
+      751,
+      154
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "text",
+    "text": "三星首款防窥屏手机",
+    "text_level": 2,
+    "bbox": [
+      148,
+      202,
+      380,
+      229
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "image",
+    "img_path": "images/9c03c2cda07dda989b8ed8ed1416a9d8e70da6cc2f410505ac194874dd11097d.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      140,
+      236,
+      496,
+      449
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "text",
+    "text": "更智慧的 Galaxy Al",
+    "bbox": [
+      527,
+      199,
+      795,
+      228
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "text",
+    "text": "增强的超视觉影像",
+    "bbox": [
+      522,
+      277,
+      728,
+      306
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "text",
+    "text": "高性能处理器",
+    "text_level": 2,
+    "bbox": [
+      153,
+      474,
+      310,
+      502
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "image",
+    "img_path": "images/b5c31c5058e61fc70338c7e02514cf8b175d6d5fc7a751b813cdefe060c0e368.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      125,
+      465,
+      498,
+      672
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "text",
+    "text": "动态拍摄 稳定防抖",
+    "bbox": [
+      524,
+      474,
+      738,
+      503
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "page_number",
+    "text": "7",
+    "bbox": [
+      491,
+      941,
+      506,
+      954
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      990,
+      993
+    ],
+    "page_idx": 6
+  },
+  {
+    "type": "text",
+    "text": "Galaxy S26 Ultra 可选颜色如下:",
+    "text_level": 2,
+    "bbox": [
+      259,
+      128,
+      740,
+      159
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "image",
+    "img_path": "images/85c4493080bb7417789d80544bdea8bb532deca083f7cb51e8994f6ede9d9727.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "镜月银 (专属色)"
+    ],
+    "content": "",
+    "bbox": [
+      169,
+      176,
+      364,
+      354
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "image",
+    "img_path": "images/1da7ec7c1c9ac6f1cbc212df7b27de32ed25b67a8766a0d698f69309f47d1eb7.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "绯霞金 (专属色)"
+    ],
+    "content": "",
+    "bbox": [
+      411,
+      176,
+      604,
+      356
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "image",
+    "img_path": "images/0dd03b4d9fda15fca8136cee5f5ed3ecd39513db4f5fa4109ef9551239e37426.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "幽夜紫"
+    ],
+    "content": "",
+    "bbox": [
+      643,
+      176,
+      836,
+      354
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "image",
+    "img_path": "images/687fd2cb60f3644fc35701e39f9123646c1f6584a6879b19a598d0d74274af9d.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "浅云蓝"
+    ],
+    "content": "",
+    "bbox": [
+      169,
+      412,
+      362,
+      592
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "image",
+    "img_path": "images/489b5776213ceb760ad2539c989762cd3143edaf538e6a9493238488676ad1cd.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "旷宇黑"
+    ],
+    "content": "",
+    "bbox": [
+      413,
+      412,
+      604,
+      589
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "image",
+    "img_path": "images/cde103f43a3189fe799aa10c58c095881383cc06443ecd6f7d65a4b6b05d6ecf.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "映雪白",
+      "[图片占位： 小米17Pro正面 背面渲染图]"
+    ],
+    "content": "",
+    "bbox": [
+      645,
+      412,
+      834,
+      589
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "page_number",
+    "text": "- 8",
+    "bbox": [
+      490,
+      941,
+      506,
+      954
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      898,
+      970,
+      990,
+      992
+    ],
+    "page_idx": 7
+  },
+  {
+    "type": "text",
+    "text": "xiaomi 17 Pro小米徐卡 联合研发徕卡光影大师|妙享背屏",
+    "bbox": [
+      148,
+      157,
+      277,
+      199
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "text",
+    "text": "12期分期免息",
+    "bbox": [
+      176,
+      208,
+      250,
+      223
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "text",
+    "text": "以旧换新至高补贴1100元",
+    "bbox": [
+      160,
+      284,
+      264,
+      297
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "text",
+    "text": "活动时间：8月2日-8月31日",
+    "bbox": [
+      156,
+      311,
+      267,
+      325
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "image",
+    "img_path": "images/f3217f6187e518db781f00c389d7bab3a6ebb409466339422a634cdd60e1e539.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      297,
+      152,
+      498,
+      345
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "text",
+    "text": "突破智能手机形态边界，面貌一新，实力俱全",
+    "bbox": [
+      584,
+      169,
+      790,
+      184
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "text",
+    "text": "M10 3500nits 1-120Hz发光体系 多场景峰值亮度 自适应刷新率",
+    "bbox": [
+      589,
+      194,
+      797,
+      222
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "image",
+    "img_path": "images/70d21aeff9235a8041d10044fcd03f22b7ed042b74030513f56e9797c0f160c7.jpg",
+    "image_caption": [],
+    "image_footnote": [
+      "产品描述：6.3英寸AMOLED直屏，陶瓷白/星耀黑双色可选，徕卡三摄模组。"
+    ],
+    "content": "",
+    "bbox": [
+      509,
+      121,
+      864,
+      395
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "image",
+    "img_path": "images/8df6e539042f91f18415bf040dabc931125eeab59480d43363ea914dda61d9ce.jpg",
+    "image_caption": [],
+    "image_footnote": [],
+    "content": "",
+    "bbox": [
+      114,
+      468,
+      620,
+      857
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "text",
+    "text": "·营屏动态通知需升级手机软件版本后支持，将于产品正式发售后推送。远程控车功前带小米汽车App：在120.0版本及以上，同时开启政屏功能后使用将于10月31日前眼Xiaomi17Pro系列系统升级及小采汽车APP升级上线。",
+    "bbox": [
+      227,
+      808,
+      503,
+      835
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "page_number",
+    "text": "- 9",
+    "bbox": [
+      490,
+      941,
+      506,
+      954
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      990,
+      992
+    ],
+    "page_idx": 8
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： iPhone 16 Pro Max 正面 背面渲染图]",
+    "bbox": [
+      112,
+      94,
+      485,
+      109
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "产品描述：6.9英寸超视网膜XDR显示屏，钛金属设计，原色钛金属/沙漠钛金属等多色可选。",
+    "bbox": [
+      111,
+      133,
+      785,
+      148
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "3.2 笔记本电脑产品图片",
+    "text_level": 2,
+    "bbox": [
+      112,
+      212,
+      362,
+      234
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： Dell XPS 13 (2026) 展开正面图]",
+    "bbox": [
+      112,
+      279,
+      437,
+      294
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "产品描述：13.4 英寸 3.5K OLED触控屏，CNC 铝合金机身，极窄边框设计，整机重量仅1.17kg。",
+    "bbox": [
+      111,
+      319,
+      816,
+      335
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： MacBook Pro 16\" M3 Max 展开正面图]",
+    "bbox": [
+      112,
+      385,
+      486,
+      401
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "产品描述：16.2 英寸 Liquid Retina XDR 显示屏，1000 尼特持续亮度，深空黑/银色双色可选。",
+    "bbox": [
+      111,
+      425,
+      787,
+      441
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： Lenovo ThinkPad X9 15 展开正面图]",
+    "bbox": [
+      112,
+      491,
+      472,
+      507
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "产品描述：15 英寸 OLED 触控屏，经典 ThinkPad 黑色外观，TrackPoint 小红点，军规 MIL-STD-810H 认证。",
+    "bbox": [
+      111,
+      530,
+      883,
+      580
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "3.3 耳机产品图片",
+    "text_level": 2,
+    "bbox": [
+      112,
+      643,
+      295,
+      664
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： Sony LinkBuds Clip 佩戴示意及产品图]",
+    "bbox": [
+      112,
+      709,
+      488,
+      724
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "产品描述：开放式耳夹设计，轻盈贴合，四种配色可选，充电盒小巧便携。",
+    "bbox": [
+      111,
+      750,
+      647,
+      765
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： AirPods Pro 2 产品图及充电盒]",
+    "bbox": [
+      112,
+      815,
+      431,
+      830
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "产品描述：入耳式设计，硅胶耳塞四种尺寸，MagSafe充电盒支持精确查找。",
+    "bbox": [
+      111,
+      854,
+      666,
+      872
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      991
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "page_number",
+    "text": "10",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 9
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： Bose QuietComfort Ultra 产品图]",
+    "bbox": [
+      112,
+      119,
+      442,
+      135
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "text",
+    "text": "产品描述：头戴式设计，高级蛋白皮耳罩，折叠收纳设计，黑白双色可选。",
+    "bbox": [
+      111,
+      159,
+      648,
+      176
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "text",
+    "text": "3.4 平板电脑产品图片",
+    "text_level": 2,
+    "bbox": [
+      112,
+      239,
+      341,
+      260
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： iPad Pro M4 13\" 正面及妙控键盘图]",
+    "bbox": [
+      112,
+      305,
+      465,
+      321
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "text",
+    "text": "产品描述：13 英寸 Ultra XDR 显示屏，超薄设计（5.1mm），支持 Apple Pencil Pro 悬停功能。",
+    "bbox": [
+      109,
+      344,
+      797,
+      362
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "text",
+    "text": "[图片占位： 三星Galaxy Tab S10 Ultra 正面及S Pen 图]",
+    "bbox": [
+      112,
+      411,
+      527,
+      428
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "text",
+    "text": "产品描述：14.6 英寸 Dynamic AMOLED 2X 巨幕，支持 S Pen，四扬声器 AKG 调音。",
+    "bbox": [
+      109,
+      450,
+      730,
+      468
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "page_number",
+    "text": "11",
+    "bbox": [
+      486,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      990,
+      992
+    ],
+    "page_idx": 10
+  },
+  {
+    "type": "text",
+    "text": "四、功能特性列表",
+    "text_level": 2,
+    "bbox": [
+      112,
+      95,
+      328,
+      119
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "4.1 三星 Galaxy S26 Ultra 核心功能",
+    "text_level": 2,
+    "bbox": [
+      112,
+      183,
+      488,
+      204
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• 200MP 超感光主摄，f/1.4 超大光圈，支持 8K 30fps 视频录制",
+    "bbox": [
+      140,
+      222,
+      663,
+      239
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• 100倍空间变焦，AI超分辨率算法",
+    "bbox": [
+      140,
+      261,
+      450,
+      279
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• S Pen 内置，支持 4096 级压感",
+    "bbox": [
+      140,
+      300,
+      424,
+      316
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• 5000mAh大容量电池，支持45W有线快充及15W无线快充",
+    "bbox": [
+      140,
+      339,
+      656,
+      356
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• IP68级防尘防水，支持1.5米水深30分钟",
+    "bbox": [
+      140,
+      377,
+      514,
+      395
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• Snapdragon 8 Elite Gen 5 处理器，3nm 制程，AI 算力提升 40%",
+    "bbox": [
+      140,
+      416,
+      686,
+      434
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• One UI 7.0，7 年系统更新承诺",
+    "bbox": [
+      140,
+      455,
+      424,
+      473
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "4.2 小米 17 Pro 核心功能",
+    "text_level": 2,
+    "bbox": [
+      112,
+      532,
+      377,
+      554
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• 徕卡光学三摄系统，覆盖14mm-75mm焦段",
+    "bbox": [
+      140,
+      573,
+      527,
+      590
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• Snapdragon 8 Elite Gen 5 旗舰处理器",
+    "bbox": [
+      140,
+      612,
+      478,
+      630
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• 6.3 英寸 AMOLED 屏幕，120Hz 自适应刷新率",
+    "bbox": [
+      140,
+      650,
+      545,
+      667
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• HyperOS 2.0 系统，深度互联小米生态",
+    "bbox": [
+      140,
+      690,
+      485,
+      708
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• 超薄光学屏下指纹，湿手解锁",
+    "bbox": [
+      142,
+      728,
+      413,
+      746
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "4.3 iPhone 16 Pro Max 核心功能",
+    "text_level": 2,
+    "bbox": [
+      112,
+      806,
+      459,
+      827
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• A18 Pro 芯片，3nm 制程，16 核神经网络引擎",
+    "bbox": [
+      140,
+      845,
+      545,
+      864
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• 48MP 融合式主摄，支持 ProRAW 及 4K 120fps 杜比视界",
+    "bbox": [
+      140,
+      885,
+      630,
+      902
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "page_number",
+    "text": "12",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      991
+    ],
+    "page_idx": 11
+  },
+  {
+    "type": "text",
+    "text": "• iOS 19，Apple Intelligence 深度集成",
+    "bbox": [
+      140,
+      93,
+      470,
+      112
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 钛金属中框，超瓷晶前面板",
+    "bbox": [
+      140,
+      132,
+      395,
+      150
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• USB-C 3.2 Gen 2，10Gbps 传输速率",
+    "bbox": [
+      140,
+      171,
+      475,
+      189
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 卫星紧急SOS及道路救援",
+    "bbox": [
+      140,
+      209,
+      388,
+      227
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "4.4 Dell XPS 13 (2026) 核心功能",
+    "text_level": 2,
+    "bbox": [
+      112,
+      287,
+      454,
+      309
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 13.4 英寸 3.5K OLED 触控屏，100% DCI-P3 色域，杜比视界",
+    "bbox": [
+      140,
+      327,
+      663,
+      345
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• Intel Core Ultra 7 155H 处理器，内置 NPU AI 引擎",
+    "bbox": [
+      140,
+      366,
+      580,
+      383
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 16GB LPDDR5x 7467MHz 内存，1TB PCIe 4.0 SSD",
+    "bbox": [
+      140,
+      405,
+      599,
+      422
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 四扬声器系统，支持杜比全景声",
+    "bbox": [
+      140,
+      444,
+      431,
+      462
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• Windows 11 Pro，Copilot+ PC 认证",
+    "bbox": [
+      140,
+      483,
+      465,
+      500
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 整机重量 1.17kg，厚度 14.8mm",
+    "bbox": [
+      140,
+      522,
+      433,
+      540
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "4.5 MacBook Pro 16\" M3 Max 核心功能",
+    "text_level": 2,
+    "bbox": [
+      111,
+      599,
+      534,
+      621
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• M3 Max 芯片，16 核 CPU + 40 核 GPU，硬件加速光线追踪",
+    "bbox": [
+      140,
+      638,
+      653,
+      657
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 16.2 英寸 Liquid Retina XDR，1000 尼特持续/1600 尼特峰值",
+    "bbox": [
+      140,
+      679,
+      661,
+      696
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 36GB 统一内存，400GB/s 内存带宽",
+    "bbox": [
+      140,
+      717,
+      465,
+      734
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 1080p FaceTime 高清摄像头",
+    "bbox": [
+      140,
+      756,
+      408,
+      773
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 六扬声器高保真音响系统，空间音频",
+    "bbox": [
+      140,
+      795,
+      467,
+      813
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "• 最长22小时电池续航",
+    "bbox": [
+      140,
+      834,
+      351,
+      851
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "page_number",
+    "text": "13",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 12
+  },
+  {
+    "type": "text",
+    "text": "4.6 耳机产品核心功能",
+    "text_level": 2,
+    "bbox": [
+      112,
+      95,
+      341,
+      116
+    ],
+    "page_idx": 13
+  },
+  {
+    "type": "text",
+    "text": "• Sony LinkBuds Clip：开放式耳夹设计，自适应降噪，蓝牙 5.3，IPX4 防水",
+    "bbox": [
+      140,
+      136,
+      767,
+      152
+    ],
+    "page_idx": 13
+  },
+  {
+    "type": "text",
+    "text": "• AirPods Pro 2：H2 芯片，自适应通透模式，个性化空间音频，IP54防尘防水",
+    "bbox": [
+      140,
+      174,
+      789,
+      191
+    ],
+    "page_idx": 13
+  },
+  {
+    "type": "text",
+    "text": "• Bose QuietComfort Ultra：沉浸式空间音频，CustomTune 智能调音，24 小时续航",
+    "bbox": [
+      140,
+      213,
+      830,
+      231
+    ],
+    "page_idx": 13
+  },
+  {
+    "type": "page_number",
+    "text": "14",
+    "bbox": [
+      488,
+      941,
+      509,
+      953
+    ],
+    "page_idx": 13
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 13
+  },
+  {
+    "type": "text",
+    "text": "五、竞品对比表",
+    "text_level": 2,
+    "bbox": [
+      112,
+      95,
+      303,
+      121
+    ],
+    "page_idx": 14
+  },
+  {
+    "type": "text",
+    "text": "5.1 旗舰智能手机横向对比",
+    "text_level": 2,
+    "bbox": [
+      112,
+      181,
+      387,
+      204
+    ],
+    "page_idx": 14
+  },
+  {
+    "type": "table",
+    "img_path": "images/f261161ef3af66c9c3ebc826d29f07c2da3f2f62d1642c054404bf8d37dd3686.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>对比维度</td><td>S26 Ultra</td><td>小米 17 Pro</td><td>iPhone 16 PM</td><td>Dell XPS 13</td><td>MacBook Pro 16</td><td>ThinkPad X9</td></tr><tr><td>屏幕素质</td><td>优秀</td><td>良好</td><td>优秀</td><td>优秀</td><td>卓越</td><td>优秀</td></tr><tr><td>性能</td><td>旗舰</td><td>旗舰</td><td>旗舰</td><td>高端</td><td>专业</td><td>高端</td></tr><tr><td>影像能力</td><td>卓越</td><td>优秀</td><td>优秀</td><td>不适用</td><td>不适用</td><td>不适用</td></tr><tr><td>续航</td><td>优秀</td><td>良好</td><td>良好</td><td>优秀</td><td>卓越</td><td>优秀</td></tr><tr><td>性价比</td><td>中</td><td>高</td><td>中</td><td>高</td><td>低</td><td>中</td></tr><tr><td>便携性</td><td>良好</td><td>优秀</td><td>良好</td><td>卓越</td><td>中</td><td>良好</td></tr></table>",
+    "bbox": [
+      104,
+      244,
+      890,
+      476
+    ],
+    "page_idx": 14
+  },
+  {
+    "type": "text",
+    "text": "5.2 耳机产品横向对比",
+    "text_level": 2,
+    "bbox": [
+      112,
+      518,
+      341,
+      542
+    ],
+    "page_idx": 14
+  },
+  {
+    "type": "table",
+    "img_path": "images/b53d06f39ce7de75ec359d208c293ed0a7a4110c2bcec18b4b309ee6b10d5134.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>对比维度</td><td>Sony LinkBuds Clip</td><td>AirPods Pro 2</td><td>Bose QC Ultra</td></tr><tr><td>佩戴方式</td><td>开放式耳夹</td><td>入耳式</td><td>头戴式</td></tr><tr><td>降噪</td><td>自适应降噪</td><td>主动降噪</td><td>卓越降噪</td></tr><tr><td>蓝牙</td><td>5.3</td><td>5.3</td><td>5.3</td></tr><tr><td>价格</td><td>2299元</td><td>1899元</td><td>$429</td></tr></table>",
+    "bbox": [
+      104,
+      582,
+      890,
+      742
+    ],
+    "page_idx": 14
+  },
+  {
+    "type": "page_number",
+    "text": "15",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 14
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      990,
+      992
+    ],
+    "page_idx": 14
+  },
+  {
+    "type": "text",
+    "text": "六、包装清单",
+    "text_level": 2,
+    "bbox": [
+      111,
+      95,
+      277,
+      119
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "text",
+    "text": "6.1 智能手机标准包装",
+    "text_level": 2,
+    "bbox": [
+      112,
+      181,
+      341,
+      204
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "table",
+    "img_path": "images/fd18d664bae57516d53acdafaf15bf1f9af9a325265762d1766eb96e37c7e121.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>物品名称</td><td>说明</td></tr><tr><td>手机主机 x1</td><td>已预装操作系统及基础应用</td></tr><tr><td>USB-C 数据线 x1</td><td>支持快充协议的数据传输线缆</td></tr><tr><td>取卡针 x1</td><td>SIM 卡槽弹出工具</td></tr><tr><td>快速入门指南 x1</td><td>含安全信息及保修条款</td></tr><tr><td>保修卡 x1</td><td>享受制造商保修服务凭证</td></tr><tr><td>品牌贴纸/卡针包</td><td>品牌定制配件(视产品而定)</td></tr></table>",
+    "bbox": [
+      104,
+      244,
+      890,
+      469
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "text",
+    "text": "6.2 笔记本电脑标准包装",
+    "text_level": 2,
+    "bbox": [
+      112,
+      512,
+      364,
+      534
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "table",
+    "img_path": "images/9245a6e1bd68cba741367f3cf5f156dd5edc7b73d52791bbe1bed3c0462fc6f7.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>物品名称</td><td>说明</td></tr><tr><td>笔记本主机 x1</td><td>已预装操作系统及驱动</td></tr><tr><td>电源适配器 x1</td><td>原装 USB-C/专用充电器</td></tr><tr><td>电源线 x1</td><td>适配当地插座的电源线</td></tr><tr><td>快速入门指南 x1</td><td>含安全信息及保修条款</td></tr><tr><td>保修卡 x1</td><td>制造商保修服务凭证</td></tr></table>",
+    "bbox": [
+      104,
+      574,
+      892,
+      766
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "text",
+    "text": "6.3 耳机标准包装",
+    "text_level": 2,
+    "bbox": [
+      112,
+      810,
+      295,
+      832
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "table",
+    "img_path": "images/69fbde44e9cf301d7f6625f566c635e91b5a376883e6f5139e6b7dc5af627f92.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>物品名称</td><td>说明</td></tr><tr><td>耳机主机 x1</td><td>含充电盒(真无线耳机)</td></tr><tr><td>耳塞套/适配器 xN</td><td>多尺寸硅胶耳塞套(视产品而定)</td></tr><tr><td>USB-C 充电线 x1</td><td>充电盒/耳机充电线</td></tr><tr><td>快速入门指南 x1</td><td>含配对说明及安全信息</td></tr><tr><td>保修卡 x1</td><td>制造商保修凭证</td></tr></table>",
+    "bbox": [
+      104,
+      872,
+      892,
+      906
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "page_number",
+    "text": "16",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 15
+  },
+  {
+    "type": "table",
+    "img_path": "",
+    "table_caption": [],
+    "table_footnote": [],
+    "bbox": [
+      104,
+      88,
+      892,
+      250
+    ],
+    "page_idx": 16
+  },
+  {
+    "type": "page_number",
+    "text": "17",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 16
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 16
+  },
+  {
+    "type": "text",
+    "text": "七、售后服务",
+    "text_level": 2,
+    "bbox": [
+      112,
+      95,
+      276,
+      119
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "7.1 保修政策总览",
+    "text_level": 2,
+    "bbox": [
+      112,
+      181,
+      295,
+      204
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "table",
+    "img_path": "images/fc3360d5a56135d695ef1f1c246152bec793085fa03f164f01ffd57e659ec574.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>产品</td><td>保修期限</td><td>退换货</td><td>延保服务</td></tr><tr><td>三星 Galaxy S26 Ultra</td><td>1年</td><td>7天无理由</td><td>Samsung Care+</td></tr><tr><td>小米 17 Pro</td><td>1年</td><td>7天无理由</td><td>小米意外保</td></tr><tr><td>iPhone 16 Pro Max</td><td>1年</td><td>14天无理由</td><td>AppleCare+</td></tr><tr><td>Dell XPS 13 (2026)</td><td>2年</td><td>7天无理由</td><td>ProSupport Plus</td></tr><tr><td>MacBook Pro 16&quot; M3 Max</td><td>1年</td><td>14天无理由</td><td>AppleCare+</td></tr><tr><td>Lenovo ThinkPad X9 15</td><td>3年</td><td>7天无理由</td><td>Premier Support</td></tr></table>",
+    "bbox": [
+      104,
+      244,
+      890,
+      468
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "7.2 售后服务流程",
+    "text_level": 2,
+    "bbox": [
+      112,
+      512,
+      295,
+      534
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "1. 在线提交售后申请 — 通过电商平台订单页面或品牌官方App提交",
+    "bbox": [
+      143,
+      579,
+      697,
+      597
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "2. 客服审核 — 1-2个工作日内完成审核，确认故障/问题",
+    "bbox": [
+      140,
+      617,
+      601,
+      635
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "3. 寄回/上门取件 — 根据产品类型选择寄修或上门服务",
+    "bbox": [
+      140,
+      656,
+      588,
+      674
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "4. 检测维修 — 品牌授权服务中心进行专业检测与维修",
+    "bbox": [
+      140,
+      695,
+      584,
+      713
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "5. 返还客户 — 维修完成后免费寄回，附维修报告",
+    "bbox": [
+      140,
+      734,
+      547,
+      751
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "7.3 客服联系方式",
+    "text_level": 2,
+    "bbox": [
+      112,
+      811,
+      295,
+      834
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "• 电商平台客服热线：400-XXX-XXXX（7x24 小时）",
+    "bbox": [
+      140,
+      852,
+      570,
+      869
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "page_number",
+    "text": "18",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 17
+  },
+  {
+    "type": "text",
+    "text": "• 在线客服：电商平台App内\"我的-客服\"入口",
+    "bbox": [
+      140,
+      94,
+      524,
+      111
+    ],
+    "page_idx": 18
+  },
+  {
+    "type": "text",
+    "text": "• 品牌官方客服：各品牌官网及官方App内查询",
+    "bbox": [
+      142,
+      132,
+      542,
+      150
+    ],
+    "page_idx": 18
+  },
+  {
+    "type": "text",
+    "text": "• 企业客户专线：800-XXX-XXXX（工作日 9:00-18:00）",
+    "bbox": [
+      142,
+      171,
+      599,
+      189
+    ],
+    "page_idx": 18
+  },
+  {
+    "type": "page_number",
+    "text": "19",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 18
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 18
+  },
+  {
+    "type": "text",
+    "text": "八、技术参数附录",
+    "text_level": 2,
+    "bbox": [
+      112,
+      95,
+      328,
+      119
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "8.1 网络与连接",
+    "text_level": 2,
+    "bbox": [
+      112,
+      181,
+      272,
+      204
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "table",
+    "img_path": "images/be0ac94bc933f775124db8597d108f014f33e88fdf637ad6efae22ca6e782bd7.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>参数</td><td>S26 Ultra</td><td>小米 17 Pro</td><td>iPhone 16 PM</td></tr><tr><td>5G频段</td><td>n1/2/3/5/7/8/12/20/25/28/38/40/41/66/75/77/78</td><td>n1/3/5/7/8/20/28/38/40/41/66/77/78</td><td>n1/2/3/5/7/8/12/20/25/28/30/38/40/41/48/66/70/71/77/78/79</td></tr><tr><td>Wi-Fi</td><td>Wi-Fi 7</td><td>Wi-Fi 7</td><td>Wi-Fi 7</td></tr><tr><td>蓝牙</td><td>5.4</td><td>5.4</td><td>5.3</td></tr><tr><td>USB</td><td>USB-C 3.2</td><td>USB-C 3.2</td><td>USB-C 3.2 Gen 2</td></tr></table>",
+    "bbox": [
+      104,
+      244,
+      890,
+      500
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "8.2 传感器与生物识别",
+    "text_level": 2,
+    "bbox": [
+      112,
+      542,
+      339,
+      564
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "• 三星 Galaxy S26 Ultra：超声波屏下指纹 + 面部识别",
+    "bbox": [
+      140,
+      609,
+      591,
+      627
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "• 小米 17 Pro：超薄光学屏下指纹 + 面部识别",
+    "bbox": [
+      140,
+      648,
+      527,
+      665
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "• iPhone 16 Pro Max：Face ID（原深感摄像头）",
+    "bbox": [
+      142,
+      686,
+      545,
+      704
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "• Dell XPS 13：Windows Hello 面部识别 + 指纹电源键",
+    "bbox": [
+      142,
+      724,
+      599,
+      743
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "• MacBook Pro 16\"：Touch ID 指纹识别",
+    "bbox": [
+      142,
+      763,
+      486,
+      781
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "• Lenovo ThinkPad X9 15：Windows Hello 面部识别 + 指纹识别",
+    "bbox": [
+      140,
+      803,
+      676,
+      820
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "text",
+    "text": "8.3 尺寸与重量",
+    "text_level": 2,
+    "bbox": [
+      112,
+      881,
+      272,
+      901
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "page_number",
+    "text": "20",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      991
+    ],
+    "page_idx": 19
+  },
+  {
+    "type": "table",
+    "img_path": "images/b850b4e0d0b1a9f52ecf52ed5c40f356006e33cd0154225dbe8df5dcf6d74b80.jpg",
+    "table_caption": [],
+    "table_footnote": [],
+    "table_body": "<table><tr><td>产品</td><td>尺寸</td><td>重量</td></tr><tr><td>S26 Ultra</td><td>162.3 x 79.0 x 8.6 mm</td><td>约 232g</td></tr><tr><td>小米 17 Pro</td><td>152.8 x 71.5 x 8.2 mm</td><td>约 193g</td></tr><tr><td>iPhone 16 PM</td><td>163.0 x 77.6 x 8.3 mm</td><td>约 225g</td></tr><tr><td>Dell XPS 13</td><td>295.3 x 199.1 x 14.8 mm</td><td>约 1.17kg</td></tr><tr><td>MacBook Pro 16&quot;</td><td>355.7 x 248.1 x 16.8 mm</td><td>约 2.14kg</td></tr></table>",
+    "bbox": [
+      104,
+      114,
+      890,
+      306
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "8.4 环境与认证",
+    "text_level": 2,
+    "bbox": [
+      112,
+      351,
+      272,
+      373
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• 所有产品均符合RoHS、REACH等国际环保标准",
+    "bbox": [
+      140,
+      391,
+      568,
+      410
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• 智能手机产品均通过SAR电磁辐射安全测试",
+    "bbox": [
+      140,
+      430,
+      529,
+      448
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• 笔记本电脑产品均通过ENERGY STAR能效认证",
+    "bbox": [
+      140,
+      469,
+      568,
+      487
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• 包装材料均采用FSC认证环保纸张",
+    "bbox": [
+      140,
+      508,
+      457,
+      526
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "8.5 认证与合规",
+    "text_level": 2,
+    "bbox": [
+      112,
+      585,
+      272,
+      607
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• 三星 Galaxy S26 Ultra：通过 IEC 60529 IP68 认证，MIL-STD-810G 跌落测试",
+    "bbox": [
+      140,
+      651,
+      797,
+      670
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• iPhone 16 Pro Max：符合 IEC 60529 IP68 标准，超瓷晶面板通过双离子交换强化",
+    "bbox": [
+      140,
+      690,
+      826,
+      709
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• Dell XPS 13 (2026)：ENERGY STAR 8.0 认证，EPEAT Gold 注册",
+    "bbox": [
+      140,
+      729,
+      710,
+      748
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• MacBook Pro 16\"：ENERGY STAR 认证，100%再生稀土元素磁体",
+    "bbox": [
+      140,
+      768,
+      712,
+      786
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• Lenovo ThinkPad X9 15：MIL-STD-810H 军规认证，TCO Certified",
+    "bbox": [
+      140,
+      806,
+      714,
+      824
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• Sony LinkBuds Clip：Bluetooth SIG 认证，IPX4 防水等级",
+    "bbox": [
+      140,
+      845,
+      638,
+      864
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• AirPods Pro 2：IP54 防尘防水认证，不含汞/BFR/PVC 等有害物质",
+    "bbox": [
+      140,
+      883,
+      705,
+      902
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "page_number",
+    "text": "21",
+    "bbox": [
+      488,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 20
+  },
+  {
+    "type": "text",
+    "text": "• Bose QuietComfort Ultra：FCC/CE 认证，符合加州 65 号提案",
+    "bbox": [
+      140,
+      94,
+      671,
+      111
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• iPad Pro M4 13\"：ENERGY STAR 认证，100%再生铝金属机身",
+    "bbox": [
+      140,
+      132,
+      684,
+      150
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• 所有产品均提供FCC/CE/CCC等强制性市场准入认证",
+    "bbox": [
+      140,
+      171,
+      604,
+      189
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "8.6 软件与固件版本",
+    "text_level": 2,
+    "bbox": [
+      112,
+      248,
+      318,
+      270
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• 三星 Galaxy S26 Ultra：One UI 7.0 (Android 16)",
+    "bbox": [
+      140,
+      315,
+      563,
+      333
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• 小米 17 Pro：HyperOS 2.0 (Android 16)",
+    "bbox": [
+      140,
+      354,
+      498,
+      372
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• iPhone 16 Pro Max：iOS 19",
+    "bbox": [
+      140,
+      393,
+      405,
+      409
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• Dell XPS 13 (2026)：Windows 11 Pro 24H2",
+    "bbox": [
+      140,
+      431,
+      529,
+      449
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• MacBook Pro 16\"：macOS Sequoia 15.0",
+    "bbox": [
+      140,
+      470,
+      508,
+      488
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• Lenovo ThinkPad X9 15：Windows 11 Pro 24H2",
+    "bbox": [
+      140,
+      508,
+      566,
+      526
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• iPad Pro M4 13\"：iPadOS 19",
+    "bbox": [
+      140,
+      547,
+      415,
+      565
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "• Galaxy Tab S10 Ultra：One UI 6.1 (Android 16)",
+    "bbox": [
+      140,
+      587,
+      560,
+      604
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "page_number",
+    "text": "22",
+    "bbox": [
+      488,
+      941,
+      509,
+      953
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      900,
+      970,
+      988,
+      992
+    ],
+    "page_idx": 21
+  },
+  {
+    "type": "text",
+    "text": "产品规格书",
+    "text_level": 2,
+    "bbox": [
+      397,
+      309,
+      598,
+      344
+    ],
+    "page_idx": 22
+  },
+  {
+    "type": "text",
+    "text": "Product Specification Document",
+    "text_level": 2,
+    "bbox": [
+      354,
+      385,
+      640,
+      402
+    ],
+    "page_idx": 22
+  },
+  {
+    "type": "text",
+    "text": "本文档为内部参考资料，未经授权不得外传",
+    "bbox": [
+      339,
+      462,
+      656,
+      479
+    ],
+    "page_idx": 22
+  },
+  {
+    "type": "text",
+    "text": "所有产品规格以制造商官方发布为准",
+    "bbox": [
+      364,
+      488,
+      633,
+      506
+    ],
+    "page_idx": 22
+  },
+  {
+    "type": "text",
+    "text": "如有疑问，请联系电商平台技术部",
+    "bbox": [
+      370,
+      513,
+      625,
+      531
+    ],
+    "page_idx": 22
+  },
+  {
+    "type": "text",
+    "text": "(c) 2026 电商平台技术部 保留所有权利",
+    "bbox": [
+      367,
+      590,
+      629,
+      607
+    ],
+    "page_idx": 22
+  },
+  {
+    "type": "page_number",
+    "text": "23",
+    "bbox": [
+      486,
+      941,
+      509,
+      954
+    ],
+    "page_idx": 22
+  },
+  {
+    "type": "footer",
+    "text": "",
+    "bbox": [
+      898,
+      970,
+      990,
+      992
+    ],
+    "page_idx": 22
+  }
+]
