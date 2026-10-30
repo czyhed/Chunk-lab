@@ -1,0 +1,23 @@
+flowchart LR
+  F[原始资料] --> P[解析与归一化]
+  P --> B[Parsed Document / Blocks]
+  B --> X{复杂内容分流}
+  X --> T[文本切分\nSentence / Token / Structure]
+  X --> TB[表格结构\n跨页合并与版本化]
+  X --> I[图片策略\n摘要+引用 / 仅引用 / 排除]
+  T --> R[Preview + Source Segments]
+  TB --> R
+  I --> R
+  R --> D[Draft 人工审核]
+  D --> Q[服务端资格门禁]
+  Q --> C[选择性 Context\nLLM 候选 -> 人工确认]
+  Q --> E[Embedding\n有效 embeddingText]
+  Q --> M[Markdown\n独立 SPU 版本]
+  E --> V[(pgvector)]
+  M --> O[(MinIO)]
+  D --> S[(PostgreSQL\n状态/版本/审计/关系)]
+  B --> O
+  I --> O
+  V --> K[Recall@K]
+  TB --> A[(Table Artifact\nJSONB)]
+
