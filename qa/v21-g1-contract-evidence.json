@@ -1,0 +1,67 @@
+{
+  "gateId": "V21-G1",
+  "verifiedAt": "2026-08-13",
+  "contractVersion": "2.1",
+  "implementationStatus": "completed",
+  "inputMatrix": {
+    "mineruOriginal": ["pdf", "png", "jpg", "jpeg", "docx", "pptx", "xlsx"],
+    "local": ["md", "txt"],
+    "officeVisualCopy": {
+      "independent": true,
+      "states": ["not_requested", "generating", "ready", "failed"],
+      "failureIsNonBlocking": true
+    }
+  },
+  "normalization": {
+    "layers": ["raw", "normalized", "display", "searchText"],
+    "types": [
+      "heading",
+      "paragraph",
+      "list",
+      "table",
+      "image",
+      "formula",
+      "code",
+      "warning",
+      "caption",
+      "footnote"
+    ],
+    "unknownType": "unsupported",
+    "rawTableHtmlInOrdinaryText": false
+  },
+  "preview": {
+    "strategies": [
+      "Structure-Aware",
+      "SentenceSplitter",
+      "TokenTextSplitter",
+      "Semantic Boundary"
+    ],
+    "tokenizer": "cl100k_base",
+    "crossBlockAggregation": true,
+    "traceableOverlap": true,
+    "protectedTypes": ["table", "image", "formula", "code", "warning", "unsupported"],
+    "silentSemanticFallback": false
+  },
+  "sourceSegment": {
+    "versioned": true,
+    "nullableUnprovenFields": true,
+    "guessedBbox": false,
+    "markdownTxtUtf16Ranges": true
+  },
+  "qualification": {
+    "locationIndependent": true,
+    "ineligibleEmbeddingText": null
+  },
+  "commands": {
+    "npm test": "passed",
+    "npm run typecheck": "passed",
+    "npm run build": "passed",
+    "node --check app.js": "passed",
+    "secret scan": "0 matches",
+    "guessed bbox scan": "0 matches"
+  },
+  "limits": [
+    "Office converter behavior is fake-runner tested; real fixed Office conversion remains a Plan 04 smoke.",
+    "Exact original/Visual Copy bbox requires measured page dimensions and versioned mapping; unavailable evidence is never inferred."
+  ]
+}
