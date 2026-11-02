@@ -1,0 +1,63 @@
+kind: pipeline
+type: docker
+name: chunk-lab-deploy
+
+trigger:
+  event:
+    - tag
+
+volumes:
+  - name: docker-sock
+    host:
+      path: /var/run/docker.sock
+
+  - name: deploy-config
+    host:
+      path: /opt/chunkLab
+
+steps:
+  - name: verify
+    image: node:22-alpine
+    commands:
+      - npm ci
+      - npm test || npm test
+      - npx tsx src/t09-structured-table-review.test.ts
+      - npm run typecheck
+
+  - name: build-image
+    image: docker:24-cli
+    volumes:
+      - name: docker-sock
+        path: /var/run/docker.sock
+    commands:
+      - echo "Building chunk-lab:${DRONE_TAG}"
+      - docker build -t chunk-lab:${DRONE_TAG} .
+      - docker tag chunk-lab:${DRONE_TAG} chunk-lab:latest
+
+  - name: deploy
+    image: docker:24-cli
+    environment:
+      REDIS_URL:
+        from_secret: REDIS_URL
+    volumes:
+      - name: docker-sock
+        path: /var/run/docker.sock
+      - name: deploy-config
+        path: /deploy/chunkLab
+    commands:
+      - test -f /deploy/chunkLab/.env
+      - docker network inspect control-network >/dev/null 2>&1 || docker network create control-network
+      - docker network connect --alias chunk-lab-redis control-network redis_jyez-redis_jYEz-1 >/dev/null 2>&1 || true
+      - docker rm -f chunk-lab >/dev/null 2>&1 || true
+      - test -n "$REDIS_URL"
+      - docker run -d --name chunk-lab --restart unless-stopped --network control-network --env-file /deploy/chunkLab/.env -e REDIS_URL="$REDIS_URL" -e PORT=4180 -e WORKSPACE_ROOT=/app/.workspace -p 127.0.0.1:4180:4180 -v chunk_lab_workspace:/app/.workspace chunk-lab:${DRONE_TAG}
+      - |
+        for attempt in $(seq 1 30); do
+          if docker exec chunk-lab node -e "fetch('http://127.0.0.1:4180/api/health').then(response => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))"; then
+            exit 0
+          fi
+          sleep 2
+        done
+        docker inspect --format='{{.State.Status}} {{.State.ExitCode}}' chunk-lab
+        echo "chunk-lab health check failed"
+        exit 1

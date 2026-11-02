@@ -1,0 +1,13 @@
+.git
+.env
+.workspace
+.playwright-cli
+.scratch
+dist
+learning_metrial
+materials
+node_modules
+output
+docs
+qa
+*.md

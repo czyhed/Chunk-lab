@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: rag-postgres
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:54329:5432"
+    environment:
+      POSTGRES_USER: ${RAG_PG_USER:?RAG_PG_USER is required}
+      POSTGRES_PASSWORD: ${RAG_PG_PASSWORD:?RAG_PG_PASSWORD is required}
+      POSTGRES_DB: ${RAG_PG_DATABASE:?RAG_PG_DATABASE is required}
+    volumes:
+      - rag_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  rag_pg_data:
+    name: rag_pg_data
