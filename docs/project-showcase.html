@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chunk Lab 项目展示</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, securityLevel: 'loose', theme: 'base', themeVariables: {
+      primaryColor: '#eff6ff', primaryTextColor: '#172554', primaryBorderColor: '#2563eb',
+      lineColor: '#64748b', secondaryColor: '#f8fafc', tertiaryColor: '#ecfdf5',
+      fontFamily: 'Segoe UI, Microsoft YaHei, sans-serif'
+    }});
+  </script>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#5b6473; --line:#d9e0ea; --blue:#2563eb; --green:#059669; --bg:#f5f7fb; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 "Segoe UI","Microsoft YaHei",sans-serif; }
+    main { max-width:1180px; margin:0 auto; padding:38px 24px 64px; }
+    header { background:#fff; border:1px solid var(--line); border-radius:8px; padding:28px 32px; box-shadow:0 6px 20px #1720330d; }
+    h1 { margin:0 0 8px; font-size:32px; letter-spacing:0; } h2 { margin:0 0 16px; font-size:22px; } h3 { margin:0 0 8px; font-size:17px; }
+    .subtitle { color:var(--muted); margin:0; }
+    .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:20px 0; }
+    .step { background:#fff; border:1px solid var(--line); border-left:4px solid var(--blue); padding:16px; min-height:132px; }
+    .step.result { border-left-color:var(--green); } .tag { color:var(--blue); font-weight:700; font-size:13px; } .result .tag { color:var(--green); }
+    section { margin-top:24px; background:#fff; border:1px solid var(--line); border-radius:8px; padding:24px; }
+    .diagram { overflow:auto; padding:8px 0; } .mermaid { min-width:760px; }
+    ol { margin:0; padding-left:24px; } li { margin:7px 0; }
+    .callout { border-left:4px solid var(--green); background:#ecfdf5; padding:14px 16px; margin-top:14px; }
+    .boundary { border-left-color:#d97706; background:#fff7ed; }
+    code { background:#eef2f7; padding:2px 5px; border-radius:4px; }
+    @media (max-width:800px) { main { padding:20px 14px 40px; } .grid { grid-template-columns:repeat(2,1fr); } header { padding:22px; } h1 { font-size:26px; } }
+    @media (max-width:520px) { .grid { grid-template-columns:1fr; } .step { min-height:auto; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Chunk Lab：从原始资料到可检索知识</h1>
+    <p class="subtitle">面试现场展示版｜主线：复杂资料 → 人工审核 → 可靠下游产物</p>
+  </header>
+
+  <section>
+    <h2>STAR 总览</h2>
+    <div class="grid">
+      <article class="step"><div class="tag">S · Situation</div><h3>资料复杂且不可直接入库</h3><p>PDF、Office、图片、表格和公式混杂，直接切块会丢失结构与来源。</p></article>
+      <article class="step"><div class="tag">T · Task</div><h3>建立可靠生产链路</h3><p>让每个 Chunk 可审核、可追溯，并能安全进入检索与导出。</p></article>
+      <article class="step"><div class="tag">A · Action</div><h3>解析、核对、修订、门禁</h3><p>MinerU 解析后，使用 Preview/Draft 隔离和人工审核控制下游资格。</p></article>
+      <article class="step result"><div class="tag">R · Result</div><h3>结果可验证</h3><p>Embedding、pgvector、Recall@K、导出和刷新恢复均有可观察结果。</p></article>
+    </div>
+    <div class="diagram"><div class="mermaid">
+flowchart LR
+  S[复杂资料] --> P[解析与标准化]
+  P --> V[Preview 预览]
+  V --> D[Draft 人工修订]
+  D --> G[资格门禁]
+  G --> E[Embedding]
+  G --> M[Markdown 导出]
+  E --> R[向量检索验证]
+    </div></div>
+  </section>
+
+  <section>
+    <h2>现场操作流程</h2>
+    <ol>
+      <li>上传一份代表性 PDF，展示批次创建与解析状态。</li>
+      <li>打开 Parsed Document，展示原文、解析块和来源定位。</li>
+      <li>调整切分策略，明确点击“应用参数并生成预览”。</li>
+      <li>在 Preview 中看质量指标（分块数、平均 Token、过短/超长），并点 Chunk 与原文互相定位高亮。</li>
+      <li>点“采用此 Preview”把预览确认为可编辑的 Draft，再演示修改、拆分、合并或排除。</li>
+      <li>只选择合格 Chunk 执行 Embedding，再运行检索验证。</li>
+    </ol>
+    <div class="callout"><strong>现场讲法：</strong>“我把模型调用放在人工审核之后，先证明内容和来源正确，再让它进入向量库。”</div>
+  </section>
+
+  <section>
+    <h2>技术架构图</h2>
+    <div class="diagram"><div class="mermaid">
+flowchart TB
+  UI[Browser / Chunk Lab] --> API[TypeScript Server API]
+  API --> PARSE[MinerU / Markdown / TXT Parser]
+  API --> REVIEW[Preview / Draft / Review State]
+  API --> CTX[Context / VLM Profiles]
+  API --> EMB[Embedding Job]
+  API --> EXP[SPU Markdown Export]
+  PARSE --> OBJ[(MinIO / Object Storage)]
+  REVIEW --> DB[(PostgreSQL)]
+  EMB --> VEC[(pgvector)]
+  EXP --> OBJ
+  VEC --> TEST[Recall@K]
+    </div></div>
+  </section>
+
+  <section>
+    <h2>数据状态与质量门禁</h2>
+    <div class="diagram"><div class="mermaid">
+stateDiagram-v2
+  [*] --> Parsed
+  Parsed --> Preview: 应用参数
+  Preview --> Draft: 采用预览
+  Draft --> Reviewed: 保存人工修订
+  Reviewed --> Eligible: 资格计算通过
+  Reviewed --> Excluded: 排除/不合格
+  Eligible --> Embedding: 选择模型
+  Embedding --> Indexed: 成功写入 pgvector
+  Embedding --> Retry: 部分失败
+  Retry --> Embedding: 重试失败项
+  Reviewed --> ContextStale: 正文或来源变更
+  ContextStale --> Reviewed: 重新审核
+    </div></div>
+    <div class="callout boundary"><strong>展示边界：</strong>说明“本地 Docker 验收完成、线上生产部署未宣称”；真实数据、fake supplier 和历史计划要按证据区分。</div>
+  </section>
+
+  <section>
+    <h2>可引用结果</h2>
+    <p>真实 PDF 验收：23 页、257 个 source blocks、55 个 Draft Chunks；Embedding 38 个成功、17 个跳过；Recall@5 对人工确认相关 Chunk 命中 1/1；刷新与重启恢复通过。</p>
+    <p class="subtitle">建议现场只强调：可追溯、可控、可验证。不要把系统描述成多用户 SaaS、正式线上知识库或全量自动化 VLM 流程。</p>
+  </section>
+</main>
+</body>
+</html>

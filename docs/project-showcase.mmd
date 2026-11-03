@@ -1,0 +1,21 @@
+flowchart LR
+  S[Situation\n复杂电商资料格式混杂\n直接入库会丢结构与来源] --> T[Task\n建立可审核、可追溯、可检索的知识生产链路]
+  T --> A1[Action 1\n上传资料并路由解析]
+  A1 --> A2[Action 2\nMinerU / 本地解析\n生成 Parsed Document]
+  A2 --> A3[Action 3\nPreview 预览\n来源双向定位与质量检查]
+  A3 --> A4[Action 4\n人工修订 Draft\n拆分/合并/排除/表格/图片]
+  A4 --> A5[Action 5\n审核 Context\n确认或人工兜底]
+  A5 --> D{Result\n审核后的 Chunk}
+  D --> E[Embedding\nembeddingEligible + embeddingText]
+  D --> M[Markdown Export\nSPU 独立版本与 Manifest]
+  E --> V[PostgreSQL + pgvector]
+  V --> R[Recall@K 检索验证]
+  M --> X[Contract 2.1 导出]
+
+  classDef star fill:#eff6ff,stroke:#2563eb,color:#172554;
+  classDef action fill:#f8fafc,stroke:#64748b,color:#0f172a;
+  classDef result fill:#ecfdf5,stroke:#059669,color:#064e3b;
+  class S,T star;
+  class A1,A2,A3,A4,A5 action;
+  class D,E,M,V,R,X result;
+
