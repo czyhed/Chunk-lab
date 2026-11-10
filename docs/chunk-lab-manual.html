@@ -1,0 +1,1605 @@
+<title>Chunk Lab 操作手册</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3f5ef;
+  --surface:#fbfcf8;
+  --surface-2:#e8ede5;
+  --ink:#14211f;
+  --muted:#5b6c66;
+  --line:#cbd6cc;
+  --strong-line:#9bad9f;
+  --accent:#0b7d76;
+  --accent-soft:#d8ece8;
+  --on-accent:#ffffff;
+  --warn:#8f5600;
+  --warn-soft:#f5e8d2;
+  --danger:#9c352b;
+  --danger-soft:#f5dfda;
+  --code-bg:#e6ece4;
+  --masthead-bg:#11201d;
+  --masthead-fg:#eef5ee;
+  --serif:"Noto Serif SC","Songti SC",STSong,serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e1615;
+    --surface:#141f1d;
+    --surface-2:#1b2a27;
+    --ink:#e7eee8;
+    --muted:#a2b2ab;
+    --line:#2b3c37;
+    --strong-line:#455c54;
+    --accent:#53d3c6;
+    --accent-soft:#173a35;
+    --on-accent:#05211e;
+    --warn:#e0a75c;
+    --warn-soft:#3a2b16;
+    --danger:#f09284;
+    --danger-soft:#3d211d;
+    --code-bg:#1a2926;
+    --masthead-bg:#091210;
+    --masthead-fg:#e9f2ea;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e1615;
+  --surface:#141f1d;
+  --surface-2:#1b2a27;
+  --ink:#e7eee8;
+  --muted:#a2b2ab;
+  --line:#2b3c37;
+  --strong-line:#455c54;
+  --accent:#53d3c6;
+  --accent-soft:#173a35;
+  --on-accent:#05211e;
+  --warn:#e0a75c;
+  --warn-soft:#3a2b16;
+  --danger:#f09284;
+  --danger-soft:#3d211d;
+  --code-bg:#1a2926;
+  --masthead-bg:#091210;
+  --masthead-fg:#e9f2ea;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+code,kbd{
+  font-family:var(--mono);
+  font-size:.86em;
+  background:var(--code-bg);
+  padding:.12em .38em;
+  border-radius:2px;
+  white-space:break-word;
+}
+.progress{position:fixed;inset:0 0 auto;height:3px;background:transparent;z-index:50}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+.masthead{
+  background:var(--masthead-bg);
+  color:var(--masthead-fg);
+  border-bottom:3px solid var(--accent);
+  position:relative;
+  overflow:hidden;
+}
+.masthead::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(to right,rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:44px 44px;
+  pointer-events:none;
+}
+.masthead-inner{
+  max-width:1300px;
+  margin:0 auto;
+  padding:54px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px));
+  position:relative;
+}
+.kicker{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 22px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#a9c4b8;
+}
+.kicker span:first-child{color:var(--accent)}
+.masthead h1{
+  font-family:var(--serif);
+  font-size:clamp(34px,5vw,58px);
+  line-height:1.14;
+  font-weight:700;
+  margin:18px 0 14px;
+  letter-spacing:.01em;
+  text-wrap:balance;
+  max-width:14ch;
+}
+.dek{
+  max-width:56ch;
+  margin:0 0 30px;
+  color:#ccdad1;
+  font-size:17px;
+  line-height:1.8;
+}
+.meta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 0;
+  border-top:1px solid rgba(255,255,255,.18);
+  padding-top:16px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:#b9cdc2;
+}
+.meta-row span{display:inline-flex;gap:6px;padding-right:18px;margin-right:18px;border-right:1px solid rgba(255,255,255,.16)}
+.meta-row span:last-child{border-right:0;padding-right:0;margin-right:0}
+.meta-row b{color:#f3f8f3;font-weight:500}
+.shell{
+  max-width:1300px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:238px minmax(0,1fr);
+  gap:56px;
+  padding:0 max(16px,env(safe-area-inset-right,0px)) 90px max(16px,env(safe-area-inset-left,0px));
+}
+.toc-wrap{
+  position:sticky;
+  top:24px;
+  align-self:start;
+  max-height:calc(100vh - 48px);
+  overflow:auto;
+  padding-top:34px;
+  scrollbar-width:thin;
+}
+.toc-wrap summary{
+  display:none;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+}
+.toc-title{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 12px;
+}
+.toc-list{list-style:none;padding:0;margin:0;border-left:1px solid var(--line)}
+.toc-list a{
+  display:flex;
+  gap:10px;
+  align-items:baseline;
+  padding:7px 0 7px 13px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px;
+  line-height:1.45;
+  border-left:2px solid transparent;
+  margin-left:-1.5px;
+}
+.toc-list a:hover{color:var(--ink)}
+.toc-list a.active{color:var(--accent);border-left-color:var(--accent);font-weight:600;background:linear-gradient(90deg,var(--accent-soft),transparent 78%)}
+.toc-list em{
+  font-family:var(--mono);
+  font-style:normal;
+  font-size:10px;
+  color:var(--strong-line);
+  flex:0 0 20px;
+}
+.doc{min-width:0;padding-top:8px;max-width:900px}
+.glance{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  margin:34px 0 8px;
+  border-top:2px solid var(--ink);
+  border-bottom:1px solid var(--line);
+}
+.glance div{padding:14px 14px 16px;border-left:1px solid var(--line);min-width:0}
+.glance div:first-child{border-left:0;padding-left:0}
+.glance dt{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.glance dd{margin:0;font-size:15px;font-weight:600;line-height:1.4}
+.glance small{display:block;font-weight:400;font-size:11.5px;color:var(--muted);margin-top:2px}
+.lede{
+  margin:26px 0 0;
+  font-size:17.5px;
+  line-height:1.85;
+  max-width:65ch;
+}
+.lede strong{font-weight:600}
+section{padding:46px 0 8px;border-top:1px solid var(--line);scroll-margin-top:20px}
+section:first-of-type{border-top:0;padding-top:6px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin:0 0 18px}
+.sec-no{
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.08em;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  padding:2px 6px;
+  flex:0 0 auto;
+  line-height:1.5;
+}
+h2{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(24px,3vw,31px);
+  line-height:1.35;
+  margin:0;
+  letter-spacing:.01em;
+  text-wrap:balance;
+}
+h3{
+  font-size:18px;
+  font-weight:600;
+  line-height:1.5;
+  margin:34px 0 10px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+h3::before{content:"";width:12px;height:2px;background:var(--accent);flex:0 0 auto}
+h4{font-size:15.5px;font-weight:600;margin:22px 0 8px;color:var(--ink)}
+p{margin:10px 0;max-width:68ch}
+ul,ol{margin:10px 0;padding-left:1.5em;max-width:66ch}
+li{margin:5px 0}
+li::marker{color:var(--accent)}
+strong{font-weight:600}
+.lead-note{font-size:14px;color:var(--muted);max-width:64ch}
+.table-wrap{
+  overflow-x:auto;
+  margin:16px 0 22px;
+  border-top:2px solid var(--strong-line);
+  border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+  line-height:1.65;
+  min-width:540px;
+}
+th{
+  text-align:left;
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.05em;
+  color:var(--muted);
+  border-bottom:1px solid var(--strong-line);
+  padding:10px 12px;
+  vertical-align:bottom;
+  background:var(--surface-2);
+}
+td{
+  padding:10px 12px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td code{font-size:12px}
+.callout{
+  display:grid;
+  grid-template-columns:78px minmax(0,1fr);
+  gap:14px;
+  margin:20px 0;
+  padding:14px 16px;
+  background:var(--accent-soft);
+  border-left:3px solid var(--accent);
+  max-width:72ch;
+}
+.callout p{margin:0;font-size:14.5px;line-height:1.75;max-width:none}
+.callout-label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:600;
+  padding-top:2px;
+}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--warn)}
+.callout.warn .callout-label{color:var(--warn)}
+.callout.danger{background:var(--danger-soft);border-left-color:var(--danger)}
+.callout.danger .callout-label{color:var(--danger)}
+.shot{
+  margin:24px 0 30px;
+  border:1px solid var(--strong-line);
+  background:var(--surface);
+  max-width:100%;
+}
+.shot-bar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 10px;
+  background:var(--surface-2);
+  border-bottom:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:10.5px;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+.dots{display:inline-flex;gap:4px;margin-right:2px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--strong-line);display:block}
+.dots i:first-child{background:#c98278}
+.dots i:nth-child(2){background:#d7b56d}
+.dots i:nth-child(3){background:#7fb39a}
+.shot-canvas{position:relative;line-height:0;background:#dfe5db}
+.shot-canvas img{display:block;width:100%}
+.pin{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  width:24px;height:24px;
+  border-radius:50%;
+  background:var(--accent);
+  color:var(--on-accent);
+  border:2px solid var(--surface);
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:600;
+  line-height:20px;
+  text-align:center;
+  box-shadow:0 0 0 1px rgba(0,0,0,.16);
+}
+figcaption{
+  padding:11px 13px;
+  font-size:12.5px;
+  line-height:1.65;
+  color:var(--muted);
+  border-top:1px solid var(--line);
+}
+figcaption b{
+  font-family:var(--mono);
+  color:var(--accent);
+  font-weight:600;
+  letter-spacing:.04em;
+  margin-right:7px;
+}
+.pin-legend{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:4px 18px;
+  padding:10px 13px;
+  border-top:1px dashed var(--line);
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.pin-legend span{display:flex;gap:7px}
+.pin-legend i{
+  font-family:var(--mono);
+  font-style:normal;
+  color:var(--accent);
+  font-weight:600;
+  flex:0 0 auto;
+}
+.diagram-scroll{
+  overflow-x:auto;
+  margin:22px 0 8px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  padding:8px;
+}
+.pipeline{display:block;width:100%;min-width:760px;height:auto;color:var(--ink)}
+.pipeline .accent{stroke:var(--accent);color:var(--accent)}
+.pipeline .accent-fill{fill:var(--accent)}
+.pipeline .accent-text{fill:var(--accent)}
+.pipeline .optional{stroke:var(--warn)}
+.pipeline .optional-text{fill:var(--warn)}
+.fig-cap{
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.65;
+  margin:8px 0 26px;
+  max-width:70ch;
+}
+.fig-cap b{font-family:var(--mono);color:var(--accent);font-weight:600;margin-right:6px}
+.steps{list-style:none;padding:0;counter-reset:step;max-width:70ch;margin:16px 0}
+.steps li{
+  counter-increment:step;
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  gap:12px;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  margin:0;
+}
+.steps li::before{
+  content:counter(step,decimal-leading-zero);
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:600;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  width:28px;
+  height:24px;
+  line-height:22px;
+  text-align:center;
+  align-self:start;
+  margin-top:2px;
+}
+.steps strong{display:block;font-size:15px;margin-bottom:1px}
+.steps span{color:var(--muted);font-size:14px;line-height:1.7;display:block}
+.kv{
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:0;
+  margin:16px 0 22px;
+  border-top:1px solid var(--line);
+  max-width:72ch;
+}
+.kv dt,.kv dd{margin:0;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.kv dt{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-right:14px;letter-spacing:.02em}
+.kv dd{line-height:1.7}
+.checklist{list-style:none;padding:0;margin:16px 0;max-width:70ch}
+.checklist li{position:relative;padding-left:28px;margin:8px 0}
+.checklist li::before{
+  content:"";
+  position:absolute;
+  left:0;top:.38em;
+  width:13px;height:13px;
+  border:1px solid var(--strong-line);
+  background:var(--surface);
+}
+.foot{
+  border-top:3px solid var(--accent);
+  background:var(--masthead-bg);
+  color:#b9cdc2;
+  margin-top:30px;
+}
+.foot-inner{
+  max-width:1300px;
+  margin:0 auto;
+  padding:26px max(16px,env(safe-area-inset-right,0px)) 34px max(16px,env(safe-area-inset-left,0px));
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 30px;
+  justify-content:space-between;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.04em;
+}
+.foot strong{color:var(--masthead-fg);font-weight:500}
+.toc-mobile-links{display:none}
+@media (max-width:1040px){
+  .shell{grid-template-columns:1fr;gap:0}
+  .toc-wrap{position:static;max-height:none;padding-top:24px;border-bottom:1px solid var(--line)}
+  .toc-wrap summary{display:block}
+  .toc-wrap[open] summary{border-bottom:1px solid var(--line)}
+  .toc-list{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 20px;
+    border-left:0;
+    padding:8px 0 14px;
+  }
+  .toc-list a{border-left:0;padding-left:0;margin-left:0;padding-top:5px;padding-bottom:5px}
+  .toc-list a.active{background:none;border-left:0}
+  .doc{max-width:none;padding-top:0}
+  .glance{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .glance div:nth-child(3){border-left:0;padding-left:0}
+}
+@media (max-width:680px){
+  body{font-size:15.5px}
+  .masthead-inner{padding-top:36px;padding-bottom:34px}
+  .masthead h1{font-size:clamp(30px,9vw,40px);max-width:12ch}
+  .dek{font-size:15.5px;margin-bottom:22px}
+  .meta-row{font-size:10px}
+  .meta-row span{padding-right:12px;margin-right:12px}
+  .glance{grid-template-columns:1fr 1fr}
+  .glance dd{font-size:13.5px}
+  .toc-list{grid-template-columns:1fr}
+  section{padding-top:38px}
+  .sec-head{gap:10px}
+  .callout{grid-template-columns:1fr;gap:4px}
+  .kv{grid-template-columns:1fr;gap:0}
+  .kv dt{padding-bottom:0;border-bottom:0}
+  .kv dd{padding-top:2px}
+  .shot-canvas .pin,.pin-legend{display:none}
+  .pin-legend{display:none}
+  figcaption{font-size:11.5px}
+  .pipeline{min-width:700px}
+}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+}
+</style>
+
+<div class="progress" aria-hidden="true"><span id="bar"></span></div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker"><span>XShipAI Workspace</span><span>Chunk Lab / 电商文档审阅台</span><span>Operating Manual</span></div>
+    <h1>Chunk Lab 操作手册</h1>
+    <p class="dek">把一份电商文档，从上传、解析、切分和人工审阅，一路送到可检索的知识库。按这套流程做，每一步都留得下来源，也改得回来。</p>
+    <div class="meta-row">
+      <span><b>版本</b> v0.1.47</span>
+      <span><b>实测</b> 2026-11-10</span>
+      <span><b>入口</b> 203.0.113.10:18184</span>
+      <span><b>适用</b> 运营 / 标注 / 内容</span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <details class="toc-wrap" open>
+    <summary>目录 · 20 章 / 2 附录</summary>
+    <p class="toc-title">本页目录</p>
+    <ol class="toc-list">
+      <li><a href="#s00"><em>00</em>阅读说明</a></li>
+      <li><a href="#s01"><em>01</em>平台入口与工作台</a></li>
+      <li><a href="#s02"><em>02</em>先理解这套流程</a></li>
+      <li><a href="#s03"><em>03</em>界面总览</a></li>
+      <li><a href="#s04"><em>04</em>五分钟跑通一次</a></li>
+      <li><a href="#s05"><em>05</em>上传与解析</a></li>
+      <li><a href="#s06"><em>06</em>原文与来源定位</a></li>
+      <li><a href="#s07"><em>07</em>切分配置</a></li>
+      <li><a href="#s08"><em>08</em>Preview 与质量指标</a></li>
+      <li><a href="#s09"><em>09</em>采用 Preview</a></li>
+      <li><a href="#s10"><em>10</em>修订 Draft</a></li>
+      <li><a href="#s11"><em>11</em>人工框选切分</a></li>
+      <li><a href="#s12"><em>12</em>Context 增强</a></li>
+      <li><a href="#s13"><em>13</em>图片与表格</a></li>
+      <li><a href="#s14"><em>14</em>SPU 资料归属</a></li>
+      <li><a href="#s15"><em>15</em>向量化与检索</a></li>
+      <li><a href="#s16"><em>16</em>导出与交付</a></li>
+      <li><a href="#s17"><em>17</em>协作与只读</a></li>
+      <li><a href="#s18"><em>18</em>当前部署实测</a></li>
+      <li><a href="#s19"><em>19</em>故障排查</a></li>
+      <li><a href="#s20"><em>20</em>最佳实践</a></li>
+      <li><a href="#appendix"><em>A</em>按钮速查</a></li>
+    </ol>
+  </details>
+
+  <main class="doc">
+    <dl class="glance">
+      <div><dt>切分策略</dt><dd>6 种<small>Structure-Aware / 父子 / 人工 / 句子 / Token / 语义</small></dd></div>
+      <div><dt>工作区</dt><dd>24 小时<small>临时批次，交付前请导出</small></dd></div>
+      <div><dt>向量维度</dt><dd>1024<small>文本向量 1024 · 8192 Token</small></dd></div>
+      <div><dt>当前环境</dt><dd>可审阅<small>Context / VLM 模型尚未配置</small></dd></div>
+    </dl>
+
+    <section id="s00">
+      <div class="sec-head"><span class="sec-no">00</span><h2>阅读说明</h2></div>
+      <p class="lede">这篇手册按“先跑通一次，再逐项深入”的顺序编排。第一次使用，先看第 1、2、4 章，照着走一遍；之后遇到具体功能，再查对应章节。</p>
+      <div class="callout">
+        <span class="callout-label">先记住</span>
+        <p>原文不可变，人工修改只发生在 Draft 和人工标注层；Preview 不是结果，采用后才成为 Draft；模型生成的图片摘要和 Context 必须人工审核；修改之后等保存完成，再执行向量化和入库。</p>
+      </div>
+      <p>本手册覆盖上传、解析、六种切分策略、Preview / Draft、人工修订、图片与表格、Context、SPU 归属、Embedding、数据库写入、检索测试和导出。部署、密钥、对象存储和数据库运维不在范围内。</p>
+      <p>账号与密码请向管理员获取，本文不记录任何登录凭据。</p>
+    </section>
+
+    <section id="s01">
+      <div class="sec-head"><span class="sec-no">01</span><h2>平台入口与工作台</h2></div>
+      <p>XShipAI 是一个应用桌面。登录后进入“应用程序”窗口，当前部署包含 6 个应用。本手册的主角是 <strong>Chunk Lab / 电商文档审阅台</strong>，入口地址是 <code>http://203.0.113.10:18184/</code>。</p>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>XShipAI / 应用程序</span></div>
+        <div class="shot-canvas"><img src="manual-assets/desktop.jpg" alt="XShipAI 工作台桌面，显示 6 个应用卡片"></div>
+        <figcaption><b>图 01</b> 登录后的应用桌面。Chunk Lab 在第二行左侧；右侧是日历与便笺；底部 Dock 可快速打开最近应用。</figcaption>
+      </figure>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>应用</th><th>副标题</th><th>与本手册的关系</th></tr></thead>
+          <tbody>
+            <tr><td>训推平台</td><td>数据、训练与模型</td><td>模型与训练，不展开</td></tr>
+            <tr><td>ComicFlow</td><td>让故事成为画面</td><td>漫画/图像创作，不展开</td></tr>
+            <tr><td>PicAgent</td><td>商品图片创作室</td><td>商品图创作，不展开</td></tr>
+            <tr><td><strong>Chunk Lab</strong></td><td><strong>整理你的知识素材</strong></td><td><strong>本手册主角：文档审阅台</strong></td></tr>
+            <tr><td>智能检索</td><td>每个回答都有依据</td><td>消费入库后的知识，可从“检索验证”跳转</td></tr>
+            <tr><td>商境</td><td>电商内容智能创作</td><td>电商内容生产，不展开</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>登录与打开应用</h3>
+      <p>未登录时打开地址会跳转到登录页。默认使用<strong>账号登录</strong>；管理员配置飞书后，也可以切换<strong>飞书扫码</strong>，仅限指定飞书群成员。登录成功后进入应用桌面。</p>
+      <ul>
+        <li><strong>打开应用：</strong>点击应用卡片，在桌面窗口内打开；窗口右上角可改为在新标签页打开。</li>
+        <li><strong>搜索应用：</strong>顶部放大镜，或 <kbd>Ctrl/⌘ K</kbd>；按名称、副标题或 ID 搜索。</li>
+        <li><strong>最近打开：</strong>左侧“个人收藏”切换全部应用和最近打开。</li>
+        <li><strong>退出：</strong>右上角用户菜单或 Dock 右侧锁图标，选择“锁定并退出登录”。</li>
+        <li><strong>重新加载：</strong>应用窗口右上角刷新图标；页面无响应时使用。</li>
+      </ul>
+      <div class="callout warn">
+        <span class="callout-label">注意</span>
+        <p>如果从应用窗口复制出端口地址、直接在新标签页打开，可能提示“请从桌面点击应用图标打开”。应用启动需要工作台先完成一次启动授权，回到桌面重新点击应用卡片即可。</p>
+      </div>
+      <p>同一浏览器会记住最近打开的批次和历史文件。清除站点数据或换浏览器后，这些入口会消失；服务端的批次仍可能在 24 小时临时工作区内。</p>
+    </section>
+
+    <section id="s02">
+      <div class="sec-head"><span class="sec-no">02</span><h2>先理解这套流程</h2></div>
+      <p>一条最小的可用链路是：<strong>上传 → 解析 → 切分 Preview → 采用为 Draft → 人工修订 → Embedding → 写入数据库 → 导出或检索验证。</strong></p>
+      <div class="diagram-scroll">
+        <svg class="pipeline" viewBox="0 0 1040 330" role="img" aria-label="主流程：上传、解析、Preview、Draft 人工审阅、Embedding、pgvector、导出或检索；Context、图片摘要、表格检索版本与 SPU 归属是 Draft 阶段的可选增强。">
+          <defs>
+            <marker id="pl-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+            <marker id="pl-arrow-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="accent-fill"/></marker>
+          </defs>
+          <g font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="12.5">
+            <g fill="none" stroke="currentColor" stroke-width="1.3">
+              <rect x="20" y="84" width="124" height="62" rx="4"/>
+              <rect x="168" y="84" width="124" height="62" rx="4"/>
+              <rect x="316" y="84" width="124" height="62" rx="4"/>
+              <rect x="464" y="84" width="124" height="62" rx="4" class="accent" stroke-width="2"/>
+              <rect x="612" y="84" width="124" height="62" rx="4"/>
+              <rect x="760" y="84" width="124" height="62" rx="4"/>
+              <rect x="908" y="84" width="112" height="62" rx="4"/>
+            </g>
+            <g stroke="currentColor" stroke-width="1.4" marker-end="url(#pl-arrow)">
+              <line x1="144" y1="115" x2="162" y2="115"/>
+              <line x1="292" y1="115" x2="310" y2="115"/>
+              <line x1="440" y1="115" x2="458" y2="115"/>
+              <line x1="588" y1="115" x2="606" y2="115" class="accent" marker-end="url(#pl-arrow-a)"/>
+              <line x1="736" y1="115" x2="754" y2="115"/>
+              <line x1="884" y1="115" x2="902" y2="115"/>
+            </g>
+            <g fill="currentColor" text-anchor="middle">
+              <text x="82" y="108" font-weight="600">上传</text>
+              <text x="82" y="126" font-size="10.5" opacity=".72">PDF / Office / 图片</text>
+              <text x="230" y="108" font-weight="600">解析</text>
+              <text x="230" y="126" font-size="10.5" opacity=".72">MinerU 或本地解析</text>
+              <text x="378" y="108" font-weight="600">Preview</text>
+              <text x="378" y="126" font-size="10.5" opacity=".72">按策略生成提案</text>
+              <text x="526" y="108" font-weight="600" class="accent-text">Draft</text>
+              <text x="526" y="126" font-size="10.5" opacity=".72">人工审阅与修订</text>
+              <text x="674" y="108" font-weight="600">Embedding</text>
+              <text x="674" y="126" font-size="10.5" opacity=".72">合格 Chunk 向量化</text>
+              <text x="822" y="108" font-weight="600">pgvector</text>
+              <text x="822" y="126" font-size="10.5" opacity=".72">写入数据库</text>
+              <text x="964" y="108" font-weight="600">导出 / 检索</text>
+              <text x="964" y="126" font-size="10.5" opacity=".72">JSON / SPU / Recall@K</text>
+            </g>
+            <g fill="none" stroke-width="1.2" stroke-dasharray="4 4" class="optional">
+              <path d="M526 146 L526 178 L166 178 L166 226"/>
+              <path d="M526 178 L526 226"/>
+              <path d="M526 178 L886 178 L886 226"/>
+              <rect x="66" y="226" width="200" height="54" rx="4"/>
+              <rect x="426" y="226" width="200" height="54" rx="4"/>
+              <rect x="786" y="226" width="200" height="54" rx="4"/>
+            </g>
+            <g fill="currentColor" text-anchor="middle">
+              <text x="166" y="248" font-weight="600">Context / 图片摘要</text>
+              <text x="166" y="266" font-size="10.5" opacity=".72">补充背景，生成后仍需审核</text>
+              <text x="526" y="248" font-weight="600">表格检索版本</text>
+              <text x="526" y="266" font-size="10.5" opacity=".72">表格与文字 Chunk 建立关联</text>
+              <text x="886" y="248" font-weight="600">SPU 资料归属</text>
+              <text x="886" y="266" font-size="10.5" opacity=".72">按商品组织，生成 Markdown</text>
+            </g>
+            <g font-size="10.5" fill="currentColor" opacity=".75">
+              <line x1="20" y1="310" x2="48" y2="310" stroke="currentColor" stroke-width="1.4"/>
+              <text x="54" y="314">必做主路径</text>
+              <line x1="136" y1="310" x2="164" y2="310" class="optional" stroke-width="1.2" stroke-dasharray="4 4"/>
+              <text x="170" y="314">可选增强（在 Draft 阶段完成）</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <p class="fig-cap"><b>图 02</b> 一张图看清主路径和可选增强。Context、图片摘要、表格检索版本、SPU 归属都发生在 Draft 阶段，按交付需要决定是否处理。</p>
+
+      <h3>六个必须记住的原则</h3>
+      <div class="kv">
+        <dt>原文不可变</dt><dd>人工修改只写入 Draft 和人工标注层，不改写 Source Document 与 Parsed Document。</dd>
+        <dt>Preview ≠ 结果</dt><dd>Preview 是可重新生成的提案；采用后才形成可编辑的 Draft。</dd>
+        <dt>文档独立</dt><dd>同一批次里一份文档失败，不会阻止其他文档继续审阅。</dd>
+        <dt>来源可追溯</dt><dd>每个 Chunk 要能回到页码、来源框或 Source Segment。</dd>
+        <dt>模型需审核</dt><dd>图片摘要和 Context 不会因为生成成功就自动成为最终结论。</dd>
+        <dt>先保存再下游</dt><dd>等保存状态完成，再执行 Embedding、数据库写入或导出。</dd>
+      </div>
+
+      <h3>核心概念</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>概念</th><th>一句话解释</th><th>界面位置</th></tr></thead>
+          <tbody>
+            <tr><td>Source Document</td><td>你上传的原始文件</td><td>左栏文件名、原文区“原始文件/源码”</td></tr>
+            <tr><td>Parsed Document</td><td>解析器对原文的结构化结果</td><td>原文区“解析结果”</td></tr>
+            <tr><td>Content Block</td><td>解析结果中的最小内容单元，如标题、段落、表格、图片</td><td>解析结果中的每一段</td></tr>
+            <tr><td>Content Group</td><td>需要保持在一起的内容组，如表格、图片+图注</td><td>解析/切分内部使用</td></tr>
+            <tr><td>Preview</td><td>按当前配置生成、尚未采用的 Chunk 提案</td><td>右侧 Preview 标签页</td></tr>
+            <tr><td>Draft</td><td>采用 Preview 后、可人工修订的 Chunk 集合</td><td>右侧 Draft 标签页</td></tr>
+            <tr><td>Source Segment</td><td>Chunk 到原文的定位记录，含页码、bbox、文本范围、重叠标记</td><td>详情面板底部</td></tr>
+            <tr><td>Context Enhancement</td><td>附加在 Chunk 外的 2-4 句背景说明</td><td>详情面板 Context 区</td></tr>
+            <tr><td>SPU</td><td>标准商品单元，资料按商品组织</td><td>“分配资料归属”对话框</td></tr>
+            <tr><td>Embedding</td><td>把 Chunk 转成向量</td><td>“生成 Embedding”/“向量化并入库”</td></tr>
+            <tr><td>pgvector</td><td>保存向量并支持相似度检索的数据库</td><td>“写入数据库”对话框</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s03">
+      <div class="sec-head"><span class="sec-no">03</span><h2>界面总览</h2></div>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 工作区</span></div>
+        <div class="shot-canvas">
+          <img src="manual-assets/workspace.jpg" alt="Chunk Lab 工作区：左侧工作文件栏、中间原文、右侧切分配置和 Chunk 区域">
+          <span class="pin" style="left:8.4%;top:23%">1</span>
+          <span class="pin" style="left:41%;top:11%">2</span>
+          <span class="pin" style="left:84%;top:11%">3</span>
+          <span class="pin" style="left:72%;top:55%">4</span>
+        </div>
+        <div class="pin-legend">
+          <span><i>1</i>工作文件：添加文档、解析设置、开始解析</span>
+          <span><i>2</i>原文区：来源视图、翻页、缩放、来源审阅</span>
+          <span><i>3</i>切分配置：策略、图片策略、参数</span>
+          <span><i>4</i>Chunk 列表与详情面板</span>
+        </div>
+        <figcaption><b>图 03</b> 工作区全貌。左、中、右三栏之间可以拖动分隔条；点击左上角 <code>☰</code> 收起文件栏。</figcaption>
+      </figure>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>区域</th><th>位置</th><th>作用</th></tr></thead>
+          <tbody>
+            <tr><td>顶栏</td><td>页面顶部</td><td>保存状态、契约版本、导出 JSON、下载 Manifest</td></tr>
+            <tr><td>工作文件</td><td>左侧</td><td>添加文档、解析设置、开始解析、切换文件、历史文件、诊断包</td></tr>
+            <tr><td>原文区</td><td>中间</td><td>查看原始文件或解析结果、翻页缩放、核对来源、人工标注</td></tr>
+            <tr><td>Chunk 审阅区</td><td>右侧</td><td>切分配置、质量指标、Preview/Draft、Chunk 列表与详情</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>顶栏</h3>
+      <p><strong>保存状态</strong>显示“未保存”“已保存并重算”“人工 Context 已保存”等，它反映最近一次操作是否落到服务端，不是自动保存开关。<strong>契约</strong>默认 <code>2.1</code>，只有下游明确要求旧格式时才选 <code>Legacy</code>。<strong>导出 JSON</strong> 导出当前批次中已有 Draft 的文档；<strong>下载 Manifest</strong> 只下载清单和统计，不含完整正文。</p>
+      <h3>工作文件栏</h3>
+      <p>从上到下：添加文档/拖放区、解析设置（模型、语言、OCR、表格、公式）、开始解析、文件列表、历史处理文件、临时工作区提示。文件行会显示 Block 数、Chunk 数和 Quality Flag 数；完成后出现“重新解析”，失败时出现“重试”和“下载诊断包”。</p>
+      <p>历史文件最多保留 50 条，每页 5 条，保存在当前浏览器。页面底部显示“临时工作区 24H”，正式结果请在有效期内导出。</p>
+      <h3>原文区</h3>
+      <p>来源视图标签随文件类型变化；下面依次是页码按钮、页码输入、上一页/下一页、缩小/适宽/实际大小/放大，以及来源审阅工具。右上角 <code>×</code> 用于清除来源锁定。</p>
+      <h3>Chunk 审阅区</h3>
+      <p>从上到下依次是切分配置、质量指标、模式栏（Preview/Draft、类型筛选、下游动作）、Context/审阅进度工具条、Chunk 列表、详情面板。下游动作只在 Draft 中出现；没有 Draft 时，导出和向量化入口不可用。</p>
+    </section>
+
+    <section id="s04">
+      <div class="sec-head"><span class="sec-no">04</span><h2>五分钟跑通一次</h2></div>
+      <p>以下以一份结构清晰的说明书为例。第一次操作建议按顺序走完，不要跳步。</p>
+      <ol class="steps">
+        <li><div><strong>添加文档</strong><span>点击“添加文档”，选择 PDF/Word/Markdown，或拖入上传区。</span></div></li>
+        <li><div><strong>确认解析设置</strong><span>扫描件打开 OCR；有表格打开“表格”；有公式再打开“公式”；中文资料选“中英混合”。</span></div></li>
+        <li><div><strong>开始解析</strong><span>点击“开始解析”，等待文件状态从“上传中/排队/解析中”变为“处理完成”。</span></div></li>
+        <li><div><strong>检查原文</strong><span>切换“原始文件/解析结果”，翻几页，确认标题、表格、图片和阅读顺序没有明显错位。</span></div></li>
+        <li><div><strong>选择策略</strong><span>“切分配置”选 Structure-Aware，最大 Token 先用 512，Overlap 先用 64；图片策略先用“摘要 + 引用”。</span></div></li>
+        <li><div><strong>生成 Preview</strong><span>点击“应用参数并生成预览”，等待右侧出现 Chunk 卡片和质量指标。</span></div></li>
+        <li><div><strong>检查质量</strong><span>先看“切分判断”和“过短/超长”，再抽查 3-5 个 Chunk 的正文、类型和 Source Segments。</span></div></li>
+        <li><div><strong>采用 Preview</strong><span>点击“采用此 Preview”。已有 Draft 时会提示替换影响；确认后进入 Draft。</span></div></li>
+        <li><div><strong>修订 Draft</strong><span>选中 Chunk，点击“编辑”，修正文字和类型；必要时拆分、合并、排除。</span></div></li>
+        <li><div><strong>按需增强</strong><span>处理图片摘要、Context、表格检索关系；需要按商品交付时确认 SPU 归属。</span></div></li>
+        <li><div><strong>向量化并入库</strong><span>点击“向量化并入库”，选择 Embedding 模型和目标数据库，依次完成切分、向量化、入库。</span></div></li>
+        <li><div><strong>验证与导出</strong><span>用“分块检索测试”看 Recall@K；确认无误后导出 JSON，或按 SPU 生成 Markdown。</span></div></li>
+      </ol>
+      <div class="callout">
+        <span class="callout-label">最短路径</span>
+        <p>只是内部试跑、不要求人工审阅时，可以在解析完成后直接点“向量化并入库”。它会自动切分、采用 Preview、向量化并入库，但不会替你审核内容。正式交付仍建议走完整审阅链路。</p>
+      </div>
+    </section>
+
+    <section id="s05">
+      <div class="sec-head"><span class="sec-no">05</span><h2>上传与解析</h2></div>
+      <h3>支持的文件</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>类型</th><th>扩展名</th><th>解析方式</th><th>来源定位特点</th></tr></thead>
+          <tbody>
+            <tr><td>PDF</td><td><code>.pdf</code></td><td>MinerU 云端解析</td><td>页码 + bbox，最适合逐框核对</td></tr>
+            <tr><td>Word</td><td><code>.docx</code></td><td>MinerU + Visual Copy</td><td>解析结果 + 版面对照，复杂浮动对象需复核</td></tr>
+            <tr><td>PowerPoint</td><td><code>.pptx</code></td><td>MinerU + Visual Copy</td><td>按幻灯片页审阅，注意阅读顺序</td></tr>
+            <tr><td>Excel</td><td><code>.xlsx</code></td><td>MinerU + Visual Copy</td><td>重点检查表头、合并单元格、行组</td></tr>
+            <tr><td>图片</td><td><code>.png</code> <code>.jpg</code> <code>.jpeg</code></td><td>MinerU</td><td>单页图片，可作为图片 Chunk</td></tr>
+            <tr><td>Markdown</td><td><code>.md</code></td><td>本地解析</td><td>只有文本和结构，没有页面 bbox</td></tr>
+            <tr><td>纯文本</td><td><code>.txt</code></td><td>本地解析</td><td>只有文本范围，没有页面 bbox</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>不要把文件扩展名改成不匹配的格式，解析器会按真实内容判断。</p>
+
+      <h3>解析设置</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>设置</th><th>选项</th><th>什么时候用</th></tr></thead>
+          <tbody>
+            <tr><td>模型</td><td><code>VLM 高质量</code> / <code>Pipeline</code></td><td>复杂版面、图文混排优先 VLM；常规文档可用 Pipeline</td></tr>
+            <tr><td>语言</td><td><code>中英混合</code> / <code>英文</code></td><td>中文或中英混排选前者；纯英文选后者</td></tr>
+            <tr><td>OCR</td><td>开/关</td><td>扫描 PDF、图片文字无法直接提取时打开</td></tr>
+            <tr><td>表格</td><td>开/关</td><td>需要保留表格结构时打开，默认开</td></tr>
+            <tr><td>公式</td><td>开/关</td><td>技术文档、数学公式时打开，默认关</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>解析设置只作用于本次提交。需要换一套设置时，另建批次，或在确认影响后对单份文档“重新解析”。</p>
+
+      <h3>文件状态</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>状态</th><th>含义</th><th>你该做什么</th></tr></thead>
+          <tbody>
+            <tr><td>待解析</td><td>文件只在浏览器待提交列表</td><td>设置好后点“开始解析”</td></tr>
+            <tr><td>上传中</td><td>正在提交原文件</td><td>保持页面打开，不要重复点击</td></tr>
+            <tr><td>排队</td><td>服务端已接收，等待解析</td><td>等待；其他文件可独立推进</td></tr>
+            <tr><td>解析中 x/y</td><td>正在处理，已提取 x/y 页</td><td>等待，大文件会更久</td></tr>
+            <tr><td>处理完成</td><td>Parsed Document 可用</td><td>点击文件进入审阅</td></tr>
+            <tr><td>已复用</td><td>命中相同内容 + 相同配置的解析缓存</td><td>直接审阅，必要时抽查来源</td></tr>
+            <tr><td>失败</td><td>当前文档未完成解析</td><td>看错误说明，下载诊断包，确认原因后重试</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>重新解析与诊断包</h3>
+      <p>文档完成后，文件行出现“重新解析”。如果已有 Preview/Draft，页面会警告：重新解析会清除旧 Parsed Document、Preview、Draft、Revision 和 Context。文档失败时按钮显示“重试”，只作用于当前文档。</p>
+      <p>出现解析失败、MinerU 结果异常、bbox/页码异常或 Visual Copy 失败时，文件行会出现“下载诊断包”。点击一次，等待“已下载”。诊断包用于排查问题，不要直接当作交付物，也不要在里面写入密钥。</p>
+      <div class="callout warn">
+        <span class="callout-label">注意</span>
+        <p>左下角“临时工作区 24H”表示上传与解析结果属于临时数据。需要长期保留的内容，请在有效期内导出 JSON/Manifest 或 SPU Markdown。</p>
+      </div>
+    </section>
+
+    <section id="s06">
+      <div class="sec-head"><span class="sec-no">06</span><h2>原文与来源定位</h2></div>
+      <h3>来源视图</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>视图</th><th>出现条件</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td>原始文件</td><td>PDF、PNG、JPG</td><td>看原页面，核对 bbox</td></tr>
+            <tr><td>Visual Copy</td><td>DOCX、PPTX、XLSX</td><td>看转换后的版面对照</td></tr>
+            <tr><td>Markdown 源码</td><td><code>.md</code></td><td>看原始 Markdown</td></tr>
+            <tr><td>渲染结果</td><td><code>.md</code></td><td>按解析 Block 看渲染文本</td></tr>
+            <tr><td>TXT 源码</td><td><code>.txt</code></td><td>看纯文本</td></tr>
+            <tr><td>解析结果</td><td>所有完成解析的文档</td><td>看 Content Block、类型和规范化状态</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 解析结果</span></div>
+        <div class="shot-canvas"><img src="manual-assets/parsed-source.jpg" alt="解析结果视图，显示 heading、paragraph、list、table 等 Content Block 及其规范化状态"></div>
+        <figcaption><b>图 04</b> 解析结果视图。每个 Block 标注类型与规范化状态（如 <code>heading · normalized</code>），点击可以定位 Chunk。</figcaption>
+      </figure>
+      <p>Markdown/TXT 没有页面坐标，因此人工框选、bbox 高亮和跨页合并不适用；这类文件主要靠 Chunk 文本和 Source Segment 的字符范围核对。</p>
+
+      <h3>翻页与缩放</h3>
+      <ul>
+        <li><strong>页码按钮</strong>：<code>P.1</code>、<code>P.2</code>……点击跳转。</li>
+        <li><strong>页码输入框</strong>：输入数字回车。</li>
+        <li><strong>↑ / ↓</strong>：上一页 / 下一页。</li>
+        <li><strong>− / +</strong>：缩小 / 放大。</li>
+        <li><strong>适宽 / 实际大小</strong>：适配可视区 / 按原始比例显示。</li>
+      </ul>
+      <p>PDF 采用窗口化渲染，只渲染当前页附近几页；滚动时页码会自动更新。</p>
+
+      <h3>双向定位</h3>
+      <ul>
+        <li>点击 Chunk 卡片：原文区跳到它的第一个来源位置并高亮来源框。</li>
+        <li>点击原文中的来源框：Chunk 列表定位到引用它的 Chunk。</li>
+        <li>按住 <kbd>Ctrl</kbd>（Mac 为 <kbd>⌘</kbd>）点击：累加选择多个来源。</li>
+        <li>点击详情面板的 Source Segments：同样可以跳回原文。</li>
+        <li>点击原文区右上角 <code>×</code>：清除来源锁定。</li>
+      </ul>
+      <p><code>OVERLAP</code> 表示这个来源片段同时被相邻 Chunk 重叠引用，是切分参数产生的正常现象，不是重复内容错误。若提示“所选来源暂无对应 Chunk”，说明当前 Preview/Draft 没有引用它：可能被排除、只存在于人工标注层，或需要重新生成 Preview。</p>
+    </section>
+
+    <section id="s07">
+      <div class="sec-head"><span class="sec-no">07</span><h2>切分配置</h2></div>
+      <h3>六种策略</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>策略</th><th>适用场景</th><th>参数</th><th>特点</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Structure-Aware</strong></td><td>大多数商品说明书、章节清晰的文档</td><td>最大 Token、Overlap</td><td>按商品身份、标题和受保护内容组组织边界；默认首选</td></tr>
+            <tr><td>SentenceSplitter</td><td>连续自然语言、段落型说明</td><td>最大 Token、Overlap</td><td>优先保留完整句子，可能偏短</td></tr>
+            <tr><td>TokenTextSplitter</td><td>需要稳定 Token 尺寸、结构要求弱</td><td>最大 Token、Overlap</td><td>尺寸最直接，可能在语义边界附近切开</td></tr>
+            <tr><td>Semantic Boundary</td><td>主题切换明显、长文</td><td>Buffer、断点 %、最大 Token</td><td>用相邻句子窗口的语义距离找断点；超长结果按完整句子回退</td></tr>
+            <tr><td>父子分块</td><td>长文档、需要“子块检索、父块回填”</td><td>父块 Token、子块 Token、子块重叠</td><td>子块用于向量检索，命中后返回父块上下文</td></tr>
+            <tr><td>人工框选切分</td><td>版面复杂、自动检测错误明显</td><td>无统一 Token 参数</td><td>以 MinerU 框为起点逐页修订，控制最精确，工作量最大</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>实测默认值：Structure-Aware / SentenceSplitter / TokenTextSplitter 均为 <code>512 / 64</code>；Semantic Boundary 为 <code>Buffer 1 / 90% / 768</code>；父子分块为 <code>父 1536 / 子 384 / 重叠 64</code>。</p>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 父子分块参数</span></div>
+        <div class="shot-canvas"><img src="manual-assets/parent-child.jpg" alt="切分配置选择父子分块后显示父块 Token、子块 Token 和子块重叠三个滑块"></div>
+        <figcaption><b>图 05</b> 选择“父子分块”后，参数区切换为父块 Token、子块 Token 和子块重叠。父块必须大于子块，重叠必须小于子块。</figcaption>
+      </figure>
+
+      <h3>参数怎么调</h3>
+      <ul>
+        <li><strong>最大 Token</strong>：文本 Chunk 的目标上限。说明书通常 512 起步；参数密集的文档可调到 768-1024。</li>
+        <li><strong>Overlap</strong>：相邻 Chunk 的重叠 Token，必须小于 Chunk 大小。问答型检索可用 64；需要更强上下文连续性时加到 96-128。</li>
+        <li><strong>Buffer</strong>：语义断点比较时，当前句子前后各取几句组成窗口。1-2 足够。</li>
+        <li><strong>断点 %</strong>：阈值越高，断点越少、块越大。90 是保守起点。</li>
+        <li><strong>父块 / 子块 / 子块重叠</strong>：父块用于回填，子块用于检索；父块必须大于子块，重叠必须小于子块。</li>
+      </ul>
+      <p>调参后配置会标记为“参数尚未生成”，旧 Preview 失效。必须点击“应用参数并生成预览”才会更新。</p>
+
+      <h3>图片策略</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>策略</th><th>结果</th><th>适用</th></tr></thead>
+          <tbody>
+            <tr><td>摘要 + 引用</td><td>图片保留对象引用，需要人工审核摘要；摘要作为图片检索文本</td><td>图片本身承载商品信息，需要被检索</td></tr>
+            <tr><td>仅引用</td><td>不生成图片摘要，必须关联至少一个同文档的有效文字 Chunk</td><td>图片只是正文的配图，靠正文检索</td></tr>
+            <tr><td>排除</td><td>图片不进入有效下游检索</td><td>装饰图、水印、无关图片</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>配置区的图片策略是生成 Preview 时的默认值；进入 Draft 后，可以在单个图片 Chunk 中改。</p>
+
+      <h3>配置草稿与预览失效</h3>
+      <p>切分配置有三层状态：<strong>配置草稿</strong>（你当前选的策略和参数）、<strong>Preview</strong>（按某一版配置生成的结果）、<strong>Draft</strong>（采用后形成的可修订结果）。</p>
+      <p>当你改了参数但还没重新生成时，配置区显示“参数尚未生成”，旧 Preview 标记为过期，“采用此 Preview”按钮变成“请先生成新 Preview”。这是为了避免“用旧结果配新参数”，不要绕过它。</p>
+    </section>
+
+    <section id="s08">
+      <div class="sec-head"><span class="sec-no">08</span><h2>Preview 与质量指标</h2></div>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / Preview</span></div>
+        <div class="shot-canvas">
+          <img src="manual-assets/preview.jpg" alt="生成 Preview 后的界面，顶部是质量指标，左侧是 Chunk 卡片，右侧是详情面板">
+          <span class="pin" style="left:84%;top:10%">1</span>
+          <span class="pin" style="left:71%;top:57%">2</span>
+          <span class="pin" style="left:90%;top:68%">3</span>
+        </div>
+        <div class="pin-legend">
+          <span><i>1</i>质量指标：分块数、Token、重叠、过短/超长</span>
+          <span><i>2</i>Chunk 卡片：类型、Token、页码、质量标记</span>
+          <span><i>3</i>详情面板：正文、SPU 归属、Context、Source Segments</span>
+        </div>
+        <figcaption><b>图 06</b> Preview 状态。此时 Chunk 只读，Context 显示“采用 Draft 后可生成”。</figcaption>
+      </figure>
+
+      <h3>生成 Preview</h3>
+      <p>自动策略点击 <strong>应用参数并生成预览</strong>。生成期间按钮禁用，配置区显示“生成中”，右侧 Chunk 列表暂时不可用；完成后自动切到 Preview 标签。生成失败时，错误框按“原因 / 影响 / 下一步”显示，先按下一步处理，不要连续点击。</p>
+
+      <h3>质量指标怎么看</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>指标</th><th>含义</th><th>判断</th></tr></thead>
+          <tbody>
+            <tr><td>分块数</td><td>当前 Preview 的 Chunk 总数</td><td>与文档章节数、页数对比，过多可能偏碎</td></tr>
+            <tr><td>平均 TOKEN</td><td>每个 Chunk 的平均 Token</td><td>与目标大小对比</td></tr>
+            <tr><td>TOKEN 范围</td><td>最短-最长</td><td>范围过宽说明大小不均</td></tr>
+            <tr><td>重叠比例</td><td>自动策略产生的实际重叠比例</td><td>与 Overlap 参数对照</td></tr>
+            <tr><td>过短 / 超长</td><td>低于建议下限 / 高于目标上限的文本 Chunk 数</td><td>先看“切分判断”的解释</td></tr>
+            <tr><td>跨页块</td><td>来源跨多个页面的 Chunk 数</td><td>PDF 中有跨页表格/长段落时正常</td></tr>
+            <tr><td>图片块 / 表格块</td><td>图片/表格 Chunk 数</td><td>与原文数量对照，缺失要查解析</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>“切分判断”是提示，不是合格分数。例如“当前结果偏碎：6/7 个文本 Chunk 低于建议长度”，通常说明文档本身章节短、列表多，或最大 Token 设得太小。短块不一定错，但要确认检索时不会丢上下文。</p>
+
+      <h3>Chunk 卡片</h3>
+      <p>每张卡片显示序号和类型、Token 数和来源页码（没有页码时显示 <code>SOURCE</code>）、正文预览、质量标记（<code>过短</code>、<code>超长</code>、<code>OVERLAP</code>、<code>需要复核</code>、<code>来源仅定位到页面</code> 等）以及 Context 状态。Draft 中卡片还会出现“选择生成”复选框。</p>
+      <p>模式栏的“类型”下拉可以只看某一类 Chunk。人工框选模式下类型筛选会隐藏，因为结果由标注框决定。</p>
+    </section>
+
+    <section id="s09">
+      <div class="sec-head"><span class="sec-no">09</span><h2>采用 Preview，进入 Draft</h2></div>
+      <p>点击 <strong>采用此 Preview</strong>。第一次采用时，Preview 变成 Draft，进入可编辑状态。如果已有 Draft，页面会先计算替换影响：多少人工作业会被清除、多少个 Context 会失效、多少个 Chunk 受影响。确认后才会替换；取消则保持原 Draft。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>Preview</th><th>Draft</th></tr></thead>
+          <tbody>
+            <tr><td>可编辑</td><td>否</td><td>是</td></tr>
+            <tr><td>可生成 Context</td><td>否</td><td>是</td></tr>
+            <tr><td>可执行 Embedding/入库</td><td>否</td><td>是</td></tr>
+            <tr><td>可导出</td><td>否（需先采用）</td><td>是</td></tr>
+            <tr><td>重新生成</td><td>可直接重新生成</td><td>需确认替换影响</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>如果 Preview 和 Draft 同时存在，模式栏会显示 <strong>放弃 Preview</strong>。点击后回到当前 Draft，不影响已保存的修订。</p>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / Draft</span></div>
+        <div class="shot-canvas"><img src="manual-assets/draft.jpg" alt="Draft 状态下的界面，模式栏出现向量化并入库、分配资料归属、生成 Markdown、Context 工具条等操作"></div>
+        <figcaption><b>图 07</b> Draft 状态。模式栏出现向量化并入库、分配资料归属、生成 Markdown、生成 Embedding、写入数据库等下游动作；顶部出现 Context 和审阅进度工具条。</figcaption>
+      </figure>
+    </section>
+
+    <section id="s10">
+      <div class="sec-head"><span class="sec-no">10</span><h2>修订 Draft</h2></div>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 编辑 Chunk</span></div>
+        <div class="shot-canvas"><img src="manual-assets/edit-detail.jpg" alt="Chunk 编辑状态，详情面板显示结束编辑、在光标拆分、合并下一块、排除、恢复自动文本和正文编辑框"></div>
+        <figcaption><b>图 08</b> 进入编辑后，详情面板出现完整动作：结束编辑、在光标拆分、合并下一块、排除、恢复自动文本。</figcaption>
+      </figure>
+
+      <h3>编辑文字和类型</h3>
+      <ol>
+        <li>在 Chunk 列表选中一个 Chunk。</li>
+        <li>点击详情面板的 <strong>编辑</strong>。</li>
+        <li>修改正文，或在“审阅类型”下拉中改类型。</li>
+        <li>离开输入框时，系统自动保存并让服务端重算派生状态。</li>
+        <li>等待顶栏显示“已保存并重算”。</li>
+      </ol>
+      <p>类型可选：标题、文本、列表、表格、图片、公式、代码、警告、图注、脚注、纯文本修复。修改类型会改变下游处理方式。例如把文本改成表格，会打开表格编辑器；把图片改成文本，会失去图片策略。</p>
+
+      <h3>拆分</h3>
+      <ul>
+        <li>先把光标放在正文中间，再点击 <strong>在光标拆分</strong>。</li>
+        <li>仅文本类型可用。</li>
+        <li>只有正文与自动文本一致时才能精确推导来源；人工改写后先点 <strong>恢复自动文本</strong>。</li>
+        <li>拆分后新 Chunk 会获得新 ID，原 Chunk 标记为被替换。</li>
+      </ul>
+
+      <h3>合并</h3>
+      <ul>
+        <li><strong>合并下一块</strong>：只能合并相邻且类型兼容的 Chunk。</li>
+        <li>不相邻、类型不同、跨文档都不能合并。</li>
+        <li>合并后服务端重算来源范围，来源会保留。</li>
+      </ul>
+
+      <h3>排除与恢复</h3>
+      <p><strong>排除</strong>后，Chunk 保留在 Draft 和审计轨迹中，但不进入有效 Embedding 下游。选中已排除的 Chunk，按钮变成 <strong>恢复</strong>。排除不是删除，不会删除原文或解析结果。</p>
+
+      <h3>撤销与重做</h3>
+      <p>详情面板右上角的 <code>↶</code> <code>↷</code> 作用于当前 Draft 的修订历史，最多保留 40 步。服务端重算完成后才能继续撤销。</p>
+
+      <h3>Source Segments</h3>
+      <p>详情面板底部列出每个 Chunk 的来源：Content Block ID、字符范围（<code>0-20</code> 这类）或“Block 级来源”、页码或 <code>parsed_only</code>、<code>OVERLAP</code> 标记。点击任意来源会跳回原文并高亮。PDF 能定位到 bbox；Markdown/TXT 只能定位到文本 Block。</p>
+
+      <h3>审阅进度</h3>
+      <p>Draft 工具栏显示“已处理 x / y”。<strong>标记到这里</strong>把当前 Chunk 及之前的所有 Chunk 标记为已处理；<strong>撤销选中完成</strong>取消当前 Chunk 的完成标记。进度保存到服务端，刷新后恢复。这是协作进度，不是质量门槛；不要求 100% 才能导出，但建议在交付前清零。</p>
+    </section>
+
+    <section id="s11">
+      <div class="sec-head"><span class="sec-no">11</span><h2>人工框选切分</h2></div>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 人工框选</span></div>
+        <div class="shot-canvas"><img src="manual-assets/manual-mode.jpg" alt="人工框选模式，原文上方显示选择、新建文本框、批选、清水印、类型、合并、拆分、生成当前页等工具"></div>
+        <figcaption><b>图 09</b> 人工框选模式的工具栏。右侧详情区显示 MinerU 检测框和人工标注数量。</figcaption>
+      </figure>
+      <p>人工框选适合 PDF、图片、Office Visual Copy 这类有页面坐标的文档。Markdown/TXT 没有 bbox，主要依赖文本 Chunk，不建议用人工框选。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>工具</th><th>作用</th></tr></thead>
+          <tbody>
+            <tr><td>选择</td><td>点选来源框；<kbd>Ctrl/⌘</kbd> 多选</td></tr>
+            <tr><td>新建文本框</td><td>在页面上拖出一个新框</td></tr>
+            <tr><td>批选</td><td>框选多个 Block</td></tr>
+            <tr><td>清水印</td><td>指定页码范围，批量清理水印</td></tr>
+            <tr><td>类型</td><td>把选中框设为文本、标题、表格、图片、列表、公式、代码、警告、图注</td></tr>
+            <tr><td>合并</td><td>合并同页选中的框</td></tr>
+            <tr><td>拆分</td><td>恢复合并前的框</td></tr>
+            <tr><td>生成当前页</td><td>只按当前页有效框生成部分 Preview</td></tr>
+            <tr><td>排除</td><td>切换选中框的排除状态</td></tr>
+            <tr><td>删除框</td><td>删除人工框，不影响原文件</td></tr>
+            <tr><td>撤销 / 重做</td><td>人工标注层的历史</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>生成当前页</strong>适合逐页检查，生成的是部分 Preview；<strong>生成整文档 Chunk</strong>按所有页面的人工标注生成完整 Preview。部分 Preview 不能直接当作最终结果，正式确认前应完成所有相关页面并生成整文档。</p>
+      <p>人工框没有可用文字时，详情区会出现 <strong>人工转录文字</strong>。填写后保存到人工修订，页码和坐标仍作为来源，不会写回 Parsed Document。</p>
+    </section>
+
+    <section id="s12">
+      <div class="sec-head"><span class="sec-no">12</span><h2>Context 增强</h2></div>
+      <p>有些 Chunk 单独看缺少主语、型号或章节背景。例如一个 Chunk 只写“续航时间为 45 分钟”，检索时不知道是哪款产品。Context 就是附加在 Chunk 外的 2-4 句背景说明，只在 Embedding 时与正文组合，不替代原文。</p>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / Context</span></div>
+        <div class="shot-canvas"><img src="manual-assets/context.jpg" alt="Draft 中选中 Chunk 后的 Context 区域，显示未生成状态、Context 模型选择和选择生成复选框"></div>
+        <figcaption><b>图 10</b> Context 工具条和详情区。选中 Chunk 后可以批量生成；未配置模型时，详情区会给出“原因 / 影响 / 下一步”。</figcaption>
+      </figure>
+
+      <h3>谁能生成</h3>
+      <ul>
+        <li>只有 Draft 中的 Chunk 能生成。</li>
+        <li>Chunk 必须“可生成”：未被排除、内容合格、有可靠文本；图片还要满足图片策略要求。</li>
+        <li>图片“仅引用”策略自身不生成 Context，应在其关联的文字 Chunk 上生成。</li>
+        <li>服务端必须配置 Context 模型。当前部署未配置模型时，下拉显示“服务未配置”，仍可人工填写。</li>
+      </ul>
+
+      <h3>批量生成</h3>
+      <ol>
+        <li>在 Draft 的 Chunk 卡片勾选 <strong>选择生成</strong>。</li>
+        <li>点击 <strong>生成已选 Context</strong>。</li>
+        <li>或点击 <strong>生成 P.x 候选（n）</strong>，只处理当前页符合推荐规则的 Chunk。</li>
+        <li>等待工具栏显示“生成中 / 待审核 / 失败 / 不合格”。</li>
+      </ol>
+      <p>如果选中的 Chunk 已有“已确认”或“人工修改”的 Context，页面会二次确认是否覆盖。不要在不必要的情况下覆盖人工结果。</p>
+
+      <h3>状态与操作</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>状态</th><th>含义</th><th>下一步</th></tr></thead>
+          <tbody>
+            <tr><td>未生成</td><td>还没有 Context</td><td>生成，或直接填写人工 Context</td></tr>
+            <tr><td>生成中</td><td>请求未结束</td><td>等待，不要重复提交</td></tr>
+            <tr><td>待审核</td><td>模型结果已返回</td><td>对照正文检查，确认或修改</td></tr>
+            <tr><td>已确认</td><td>模型结果已人工确认</td><td>可进入 embeddingText</td></tr>
+            <tr><td>人工修改</td><td>人工保存了 Context</td><td>可进入 embeddingText</td></tr>
+            <tr><td>失败</td><td>请求失败</td><td>已保存内容不受影响；重试或人工填写</td></tr>
+            <tr><td>已失效</td><td>Chunk 内容/来源变化后旧 Context 过期</td><td>旧内容只供查看，不进入 embeddingText</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>操作按钮：<strong>生成 Context</strong> 只生成当前 Chunk；<strong>保存人工 Context</strong> 保存人工编写或修改的内容；<strong>确认 Context</strong> 确认“待审核”的模型结果；“实际采用的 Context 范围”和“跳过的邻居”用于核对模型用了哪些文档范围。</p>
+      <div class="callout warn">
+        <span class="callout-label">实测提示</span>
+        <p>当前部署的模型列表为空，Context 模型和图片理解模型都显示“服务未配置”。可用替代路径：人工填写 Context，保存后状态为“人工修改”，可进入下游；图片使用“仅引用”或“排除”，等配置模型后再生成摘要。</p>
+      </div>
+    </section>
+
+    <section id="s13">
+      <div class="sec-head"><span class="sec-no">13</span><h2>图片与表格</h2></div>
+      <h3>图片策略</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>策略</th><th>图片自身文本</th><th>是否发 VLM</th><th>必须关联文字</th></tr></thead>
+          <tbody>
+            <tr><td>摘要 + 引用</td><td>人工审核后的摘要</td><td>可选</td><td>否</td></tr>
+            <tr><td>仅引用</td><td>空</td><td>否</td><td>是，至少一个有效文字 Chunk</td></tr>
+            <tr><td>排除</td><td>空</td><td>否</td><td>否</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>摘要 + 引用</h3>
+      <ol>
+        <li>选中图片 Chunk，点击“编辑”。</li>
+        <li>图片策略选“摘要 + 引用”。</li>
+        <li>从“图片理解模型”下拉选择管理员配置的 profile。</li>
+        <li>点击 <strong>发送图片并生成摘要</strong>。这可能产生模型费用，只点一次。</li>
+        <li>阅读只读的“VLM 原始摘要”，对照原图检查商品、型号、数值、单位、颜色和图中文字。</li>
+        <li>在“人工摘要”中改写错误或不完整内容；在“人工补充”中补充检索信息。</li>
+        <li>检查“最终生效文本”。</li>
+        <li>点击 <strong>保存图片策略</strong>，等待保存完成。</li>
+      </ol>
+      <p>VLM 失败不会覆盖已保存摘要。没有配置模型时，不能生成，但可以手写摘要或改用其他策略。</p>
+
+      <h3>仅引用</h3>
+      <ul>
+        <li>图片自身不进入文本 Embedding。</li>
+        <li>必须关联至少一个同文档、未排除、可检索的文字 Chunk。</li>
+        <li>关联文字不会自动拼进图片摘要；下游通过关联文字工作。</li>
+        <li>文字 Chunk 被排除/替换后，服务端会重算图片资格，详情会提示失效关联。</li>
+      </ul>
+
+      <h3>表格</h3>
+      <p>把 Chunk 类型设为 <code>table</code> 后，详情面板变成表格编辑器：编辑表格标题、列标题、单元格文字；上方/下方加行，左侧/右侧加列，删除选中列，删除指定行；勾选单元格后“合并选中”或“拆分单元格”；按来源行组显示“行组 n”，重复表头会标注；点击 <strong>保存表格</strong>，等待服务端重算。</p>
+      <ul>
+        <li>合并必须是连续矩形，不能跨来源行组。</li>
+        <li>包含跨行合并时，部分增删会被阻止，先拆分。</li>
+        <li>每个来源行组至少保留一行；表格至少保留一行。</li>
+      </ul>
+      <p>表格下方还有 <strong>普通检索关联文字</strong>：搜索并勾选同一文档中的有效文字 Chunk，点击 <strong>保存表格检索版本</strong>。成功后显示版本号和“已保存并就绪/未就绪”。表格检索只引用关联文字，不需要人工摘要或 VLM；未关联文字时不能保存。</p>
+    </section>
+
+    <section id="s14">
+      <div class="sec-head"><span class="sec-no">14</span><h2>SPU 资料归属</h2></div>
+      <p>Chunk Lab 不只输出一份文档，还要把资料组织到商品（SPU）上。确认资料归属后，才能按 SPU 生成 Markdown，并支持一份文档分发到多个 SPU。</p>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / SPU 商品资料</span></div>
+        <div class="shot-canvas"><img src="manual-assets/spu-dialog.jpg" alt="分配资料归属对话框，包含选择已有 SPU 和新建 SPU 两种模式、商品大类、商品名称、已选 SPU 和资料类型"></div>
+        <figcaption><b>图 11</b> “分配资料归属”对话框。当前商品大类为空，第一次使用需要先新增类目。</figcaption>
+      </figure>
+      <p>当前部署 <code>/api/spu-categories</code> 返回空，说明商品大类还没有建。第一次使用要先新增类目。</p>
+
+      <h3>新建类目与 SPU</h3>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 新建 SPU</span></div>
+        <div class="shot-canvas"><img src="manual-assets/spu-new.jpg" alt="新建 SPU 表单，包含商品名称、搜索商品大类、商品大类、品牌、型号/系列和新增商品大类展开项"></div>
+        <figcaption><b>图 12</b> “新建 SPU”模式。填写名称和大类后生成候选 SPU ID，并检查疑似重复商品。</figcaption>
+      </figure>
+      <ol>
+        <li>切到 <strong>新建 SPU</strong>。</li>
+        <li>填写商品名称，例如“毒蝰 V3 Pro”。</li>
+        <li>在“搜索商品大类”输入名称或英文编码；如果没有匹配，点击 <strong>新增商品大类</strong>。</li>
+        <li>填写类目名称和英文编码（最多 8 位），点击 <strong>保存类目</strong>。</li>
+        <li>回到新建 SPU，选择类目，按需填写品牌、型号/系列。</li>
+        <li>系统生成候选 SPU ID，并检查疑似重复。</li>
+        <li>没有重复时点“创建并使用”；有疑似重复时先核对，再决定“使用此 SPU”或“仍然创建新 SPU”。</li>
+        <li>创建后 SPU 加入“已选 SPU”列表。</li>
+      </ol>
+
+      <h3>选择已有 SPU</h3>
+      <p>切到 <strong>选择已有 SPU</strong>，先选商品大类，再输入商品名称或型号缩小范围，点击“加入已选”。</p>
+
+      <h3>资料类型</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>选项</th><th>适用</th></tr></thead>
+          <tbody>
+            <tr><td>说明书</td><td>使用说明、操作指南</td></tr>
+            <tr><td>参数表</td><td>规格、技术参数</td></tr>
+            <tr><td>安装指南</td><td>安装、部署、组装</td></tr>
+            <tr><td>售后政策</td><td>保修、退换、维修</td></tr>
+            <tr><td>混合资料</td><td>多种类型混在一份文档</td></tr>
+            <tr><td>其他</td><td>不属于以上类型</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>确认归属与 Chunk 例外</h3>
+      <p>选择至少一个 SPU 和资料类型后，点击 <strong>确认资料归属</strong>。确认前，普通 Chunk 会继承文档级 SPU；确认后可以逐个设置 Chunk 例外；未确认时，“生成 Markdown”不可用。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Chunk 范围</th><th>含义</th><th>导出行为</th></tr></thead>
+          <tbody>
+            <tr><td>指定 SPU</td><td>只属于勾选的目标 SPU</td><td>只进入这些 SPU 的 Markdown</td></tr>
+            <tr><td>公共资料</td><td>复制到所有目标 SPU</td><td>每个目标 SPU 都包含</td></tr>
+            <tr><td>未分配</td><td>没有归属</td><td>阻断导出</td></tr>
+            <tr><td>冲突</td><td>归属互相矛盾</td><td>阻断导出</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>存在未分配或冲突时，整个 SPU Markdown 导出会被阻断。先逐块处理，再生成。</p>
+
+      <h3>Markdown 与 Manifest</h3>
+      <p>确认归属后，点击 <strong>生成 Markdown</strong>。结果区按 SPU 列出状态（尚未生成、待生成、已生成、已生成含排除项、已阻断、需重新生成、失败）、文件名、导出版本和 Markdown/Manifest 下载链接，以及阻断或过期原因。</p>
+      <p>文件命名规则：<code>{spuId}_{documentType}_{来源文件名}_{exportVersion}.md</code>。Markdown 顶部包含 SPU、文档类型、来源文档、来源版本、Review Revision 和导出版本，正文按 Chunk 顺序输出，表格转为 Markdown 表格，图片转为图片引用，重叠内容去重。</p>
+      <p>多 SPU 时，每个 SPU 生成一个 child；任一 child 被阻断，整体状态为 <code>blocked</code>。文档或审阅版本变化后，旧导出会变成 <code>stale</code>，需要重新生成。</p>
+    </section>
+
+    <section id="s15">
+      <div class="sec-head"><span class="sec-no">15</span><h2>向量化、入库与检索</h2></div>
+      <h3>当前可用的模型和数据库</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>类型</th><th>当前值</th></tr></thead>
+          <tbody>
+            <tr><td>Embedding</td><td><code>文本向量 1024</code>，1024 维，最大 8192 Token</td></tr>
+            <tr><td>数据库</td><td><code>测试知识库</code>，pgvector，schema 2.0</td></tr>
+            <tr><td>Context / VLM</td><td>未配置（模型列表为空）</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>生成 Embedding</h3>
+      <p>进入 Draft，点击 <strong>生成 Embedding</strong>（或直接使用“向量化并入库”），选择模型，等待任务完成。每个 Chunk 的状态：成功、失败、跳过。被排除、不合格、仅引用图片或无有效文本的 Chunk 会跳过。任务级信息包括成功/失败/跳过数量、是否幂等复用、是否已失效。修改 Draft 后，旧 Embedding 会标记为失效，需要重新生成。“重试失败项”只重试失败项，不会重做成功项。</p>
+
+      <h3>写入数据库</h3>
+      <p>先完成 Embedding，点击 <strong>写入数据库</strong>，选择目标数据库并提交。每个 Chunk 的状态：已写入、未变化、已删除、失败、跳过。<strong>未变化</strong>表示数据库已有相同版本；<strong>已删除</strong>通常表示该 Chunk 在新版本中被排除或删除。数据库写入依赖 Embedding 任务，没有成功向量时不要直接点写入。</p>
+
+      <h3>向量化并入库（快捷路径）</h3>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 向量化并入库</span></div>
+        <div class="shot-canvas"><img src="manual-assets/quick-ingest.jpg" alt="向量化并入库对话框，选择 Embedding 模型和目标数据库，显示当前文档使用当前切块策略"></div>
+        <figcaption><b>图 13</b> “向量化并入库”对话框。它把切分、采用 Preview、向量化和入库串成一条流水线。</figcaption>
+      </figure>
+      <ol>
+        <li>解析完成后点击 <strong>向量化并入库</strong>。</li>
+        <li>选择 Embedding 模型和目标数据库。</li>
+        <li>点击 <strong>开始入库</strong>。</li>
+      </ol>
+      <p>内部依次执行：如果配置有改动或还没有 Preview/Draft，先切分；如果有 Preview，采用为 Draft（已有 Draft 时可能提示替换）；向量化；写入数据库。</p>
+      <div class="callout danger">
+        <span class="callout-label">别跳过审阅</span>
+        <p>快捷路径不会替你审核内容，也不会生成 Context、图片摘要或 SPU 归属。如果已有 Draft，替换会清除人工修订和 Context，页面会二次确认。入库后仍可回到 Draft 继续审阅，但修改后要重新向量化和写入。</p>
+      </div>
+
+      <h3>分块检索测试</h3>
+      <p>前提：已经完成数据库写入。点击 <strong>分块检索测试</strong>，输入测试查询，设置 Top K（默认 5），填写人工确认相关的 Chunk ID（每行一个或用逗号分隔），点击 <strong>运行 Recall@K</strong>。</p>
+      <p>结果包括 <code>Recall@K</code> 百分比、命中数/相关数、索引版本、使用的 Embedding 模型、数据库、已入库记录数/Draft Chunk 数，以及每个结果的分数、文本、是否命中；父子分块时还能展开父块。</p>
+      <p>这是单文档、小样本的检索自检，不是全库评测。它回答“这次入库的 Chunk 能不能被查回来”，不回答“整个知识库的检索质量”。</p>
+
+      <h3>检索验证</h3>
+      <p>Draft 中还有 <strong>检索验证</strong>，点击会在新标签页打开“智能检索”应用（当前配置为 <code>http://203.0.113.10:18185/</code>）。它用于在消费端验证问答效果，具体操作见该应用自己的界面。</p>
+    </section>
+
+    <section id="s16">
+      <div class="sec-head"><span class="sec-no">16</span><h2>导出与交付</h2></div>
+      <h3>导出 JSON</h3>
+      <ol>
+        <li>顶栏“契约”选 <code>2.1</code>（默认）或 <code>Legacy</code>。</li>
+        <li>点击 <strong>导出 JSON</strong>。</li>
+        <li>检查文件名：<code>chunk-lab-2.1-export.json</code>。</li>
+      </ol>
+      <p><code>2.1</code> 会保留来源、配置、人工修订、质量标记、图片关联和模型 provenance。<code>Legacy</code> 只用于下游明确要求旧格式的场景；缺少 Contract 2.1 规范模型的文档可能导出失败。</p>
+
+      <h3>下载 Manifest</h3>
+      <p>点击 <strong>下载 Manifest</strong>，得到批次级清单：文档 ID、状态、Chunk 数、导出时间、契约版本。它不含完整正文，适合交付核对和归档索引。</p>
+
+      <h3>SPU Markdown 与 Manifest</h3>
+      <p>在“分配资料归属”对话框中生成，每个 SPU 一份 Markdown、一份 Manifest。下载链接只在生成成功后出现。</p>
+
+      <h3>导出前的检查</h3>
+      <ul class="checklist">
+        <li>顶部保存状态不是“未保存”。</li>
+        <li>Draft 中要交付的 Chunk 没有意外“排除”。</li>
+        <li>表格、图片、Context 的修改已保存。</li>
+        <li>SPU 归属没有“未分配/冲突”（按 SPU 交付时）。</li>
+        <li>Embedding/数据库任务是最新版本（需要下游检索时）。</li>
+        <li>导出文件里没有密钥、连接串、预签名 URL 或向量值。</li>
+      </ul>
+    </section>
+
+    <section id="s17">
+      <div class="sec-head"><span class="sec-no">17</span><h2>协作、保存与只读</h2></div>
+      <h3>文档租约</h3>
+      <p>同一份文档同一时间只允许一个会话编辑。打开文档时，前端会申请一个 60 秒租约，并定时续租。如果另一个会话正在处理，当前页面显示“文档正在由其他会话处理，当前为只读状态”：可以查看原文、解析结果和已保存内容；编辑、生成、入库等按钮不可用；占用结束后页面会自动恢复编辑，不需要刷新。</p>
+      <figure class="shot">
+        <div class="shot-bar"><span class="dots"><i></i><i></i><i></i></span><span>Chunk Lab / 只读状态</span></div>
+        <div class="shot-canvas"><img src="manual-assets/lease-conflict.jpg" alt="文档被其他会话占用时的只读提示，说明原因、影响和下一步"></div>
+        <figcaption><b>图 14</b> 另一个会话持有租约时的只读提示。错误框按“原因 / 影响 / 下一步”组织，占用结束后自动恢复。</figcaption>
+      </figure>
+      <p>不要用多个标签页同时编辑同一文档。需要并行处理时，选择不同文档。</p>
+
+      <h3>保存状态</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>显示</th><th>含义</th></tr></thead>
+          <tbody>
+            <tr><td>未保存</td><td>页面刚打开或还有操作未提交</td></tr>
+            <tr><td>已保存并重算</td><td>Chunk 修改已保存，服务端完成派生重算</td></tr>
+            <tr><td>人工 Context 已保存</td><td>Context 已写入 Draft</td></tr>
+            <tr><td>保存失败</td><td>请求失败，先处理错误再继续</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>错误按三段显示：<strong>原因</strong>（为什么没完成）、<strong>影响</strong>（哪些结果没生成，哪些已保存内容仍然安全）、<strong>下一步</strong>（你可以执行的恢复动作）。优先按“下一步”处理，不要因为页面没更新就连续点击。</p>
+    </section>
+
+    <section id="s18">
+      <div class="sec-head"><span class="sec-no">18</span><h2>当前部署实测</h2></div>
+      <p>以下结果来自 2026-11-10 对 <code>http://203.0.113.10:18184/</code> 的实际访问，仅代表当前测试环境。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>检查项</th><th>结果</th></tr></thead>
+          <tbody>
+            <tr><td>登录</td><td>成功进入 XShipAI 工作台</td></tr>
+            <tr><td>应用数量</td><td>6 个</td></tr>
+            <tr><td>Chunk Lab 健康检查</td><td><code>{"ok":true}</code></td></tr>
+            <tr><td>Chunk Lab 版本</td><td>v0.1.47</td></tr>
+            <tr><td>Context/VLM 模型</td><td>空列表，界面显示“服务未配置”</td></tr>
+            <tr><td>Embedding 模型</td><td>1 个：文本向量 1024，1024 维，8192 Token</td></tr>
+            <tr><td>数据库</td><td>1 个：测试知识库，pgvector，schema 2.0</td></tr>
+            <tr><td>SPU 商品大类</td><td>空列表，需要先新增</td></tr>
+            <tr><td>智能检索地址</td><td><code>http://203.0.113.10:18185/</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>演示文档结果</h3>
+      <p>用一份 1.3 KB 的 Markdown 说明书 <code>XClean-V9-manual.md</code> 做了只读验证：</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>指标</th><th>结果</th></tr></thead>
+          <tbody>
+            <tr><td>解析</td><td>本地解析完成，14 个 Block</td></tr>
+            <tr><td>切分策略</td><td>Structure-Aware，512 / 64</td></tr>
+            <tr><td>Chunk 数</td><td>8</td></tr>
+            <tr><td>平均 Token</td><td>65.8</td></tr>
+            <tr><td>Token 范围</td><td>6-159</td></tr>
+            <tr><td>过短 / 超长</td><td>6 / 0</td></tr>
+            <tr><td>表格块</td><td>1</td></tr>
+            <tr><td>类型</td><td>标题、文本、列表、表格</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>结果解读：这份文档章节短、列表多，8 个 Chunk 里有 6 个文本块低于 Structure-Aware 的建议下限（128 Token）。这不是解析错误，而是“短章节文档”的正常表现。若用于检索，可考虑：把最大 Token 调到 768-1024，让相邻短章节合并；或改用父子分块（子块 384、父块 1536），检索命中后回填父块；或在人工框选模式下合并过短章节。</p>
+      <div class="callout">
+        <span class="callout-label">验证边界</span>
+        <p>本次验证没有执行 Embedding、数据库写入和 SPU Markdown 生成，避免向共享测试库写入演示数据。因此这三个入口的界面可见，但结果状态未在本手册中作为实测结论。</p>
+      </div>
+
+      <h3>功能可用性</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>功能</th><th>当前状态</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>上传与解析</td><td>可用</td><td>Markdown/TXT 本地解析；PDF/Office/图片走 MinerU</td></tr>
+            <tr><td>六种切分策略</td><td>可用</td><td>人工框选需要页面 bbox</td></tr>
+            <tr><td>Preview / Draft / 修订</td><td>可用</td><td>已实测生成 8 个 Chunk 并进入 Draft</td></tr>
+            <tr><td>Context 生成</td><td>不可用（未配置模型）</td><td>可人工填写 Context</td></tr>
+            <tr><td>图片摘要</td><td>不可用（未配置模型）</td><td>可用“仅引用”或“排除”</td></tr>
+            <tr><td>表格编辑与检索版本</td><td>可用</td><td>依赖表格 Chunk 和有效文字 Chunk</td></tr>
+            <tr><td>SPU 归属与 Markdown</td><td>需先建类目</td><td>当前商品大类为空</td></tr>
+            <tr><td>Embedding</td><td>已配置</td><td>未执行写入验证</td></tr>
+            <tr><td>数据库写入</td><td>已配置</td><td>未执行写入验证</td></tr>
+            <tr><td>检索测试</td><td>需先入库</td><td>未执行</td></tr>
+            <tr><td>JSON / Manifest 导出</td><td>可用</td><td>Draft 存在时启用</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s19">
+      <div class="sec-head"><span class="sec-no">19</span><h2>故障排查</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>现象</th><th>可能原因</th><th>处理</th></tr></thead>
+          <tbody>
+            <tr><td>上传后立即失败</td><td>格式不支持、文件损坏、加密、对象存储未配置</td><td>换格式或解密；下载诊断包；联系管理员</td></tr>
+            <tr><td>解析结果为空或乱码</td><td>扫描件未开 OCR、语言选错、文件是图片型 PDF</td><td>打开 OCR，确认语言；重新解析</td></tr>
+            <tr><td>“开始解析”按钮灰色</td><td>没有待上传文件</td><td>先添加文件</td></tr>
+            <tr><td>“应用参数并生成预览”灰色</td><td>没有选中已完成文档，或文档只读</td><td>选中“处理完成”的文档；等待租约恢复</td></tr>
+            <tr><td>改了参数但预览没变</td><td>只改了配置草稿，没有重新生成</td><td>点“应用参数并生成预览”</td></tr>
+            <tr><td>“采用此 Preview”变成“请先生成新 Preview”</td><td>配置指纹变了，旧 Preview 过期</td><td>重新生成 Preview</td></tr>
+            <tr><td>采用 Preview 时要求确认替换</td><td>已有 Draft，替换会清除修订/Context</td><td>先导出或确认影响，再决定</td></tr>
+            <tr><td>Context 生成按钮灰色</td><td>非 Draft、Chunk 不可生成、未选模型、已排除</td><td>看详情面板的“原因/影响/下一步”</td></tr>
+            <tr><td>图片摘要按钮灰色</td><td>策略不是“摘要 + 引用”，或没有 VLM 模型</td><td>改策略；没有模型时手写摘要或用“仅引用”</td></tr>
+            <tr><td>“仅引用”保存失败</td><td>没有关联有效文字 Chunk</td><td>搜索并勾选至少一个文字 Chunk</td></tr>
+            <tr><td>SPU Markdown 按钮灰色</td><td>未确认资料归属、存在未分配/冲突 Chunk</td><td>先确认归属，再逐块处理例外</td></tr>
+            <tr><td>SPU 导出显示“已阻断”</td><td>有 Chunk 未分配或冲突</td><td>看阻断原因，修正 Chunk 归属</td></tr>
+            <tr><td>SPU 导出显示“需重新生成”</td><td>文档或审阅版本变化，旧导出过期</td><td>重新生成 Markdown</td></tr>
+            <tr><td>Embedding 部分失败</td><td>模型超时、文本不合格、维度不匹配</td><td>看失败原因，只重试失败项</td></tr>
+            <tr><td>数据库写入失败</td><td>没先做 Embedding、连接失败、维度不匹配</td><td>先完成 Embedding；检查数据库 profile</td></tr>
+            <tr><td>检索测试按钮灰色</td><td>还没有数据库任务</td><td>先完成“写入数据库”</td></tr>
+            <tr><td>页面提示只读/其他会话处理</td><td>另一个标签页或用户持有 60 秒租约</td><td>关闭其他会话，等待自动恢复</td></tr>
+            <tr><td>刷新后历史文件不见了</td><td>清除了站点数据或换了浏览器</td><td>从原批次入口重新打开；服务端数据可能仍在 24 小时内</td></tr>
+            <tr><td>导出为空或失败</td><td>没有 Draft，或 Legacy 缺少 2.1 模型</td><td>先采用 Preview；换 2.1 契约</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s20">
+      <div class="sec-head"><span class="sec-no">20</span><h2>最佳实践与验收清单</h2></div>
+      <h3>参数起步建议</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>文档类型</th><th>策略</th><th>参数</th></tr></thead>
+          <tbody>
+            <tr><td>商品说明书（章节清晰）</td><td>Structure-Aware</td><td>512 / 64</td></tr>
+            <tr><td>长说明书、问答检索</td><td>父子分块</td><td>父 1536 / 子 384 / 重叠 64</td></tr>
+            <tr><td>连续段落、政策文本</td><td>SentenceSplitter</td><td>512 / 64</td></tr>
+            <tr><td>Token 预算严格</td><td>TokenTextSplitter</td><td>512 / 64</td></tr>
+            <tr><td>主题切换明显</td><td>Semantic Boundary</td><td>Buffer 1 / 90% / 768</td></tr>
+            <tr><td>版面复杂、自动检测差</td><td>人工框选</td><td>逐页修订</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>审阅顺序</h3>
+      <ol class="steps">
+        <li><div><strong>先看解析</strong><span>标题、表格、图片、阅读顺序。</span></div></li>
+        <li><div><strong>再看切分</strong><span>质量指标 + 抽查 Chunk。</span></div></li>
+        <li><div><strong>再改内容</strong><span>文字、类型、拆分/合并/排除。</span></div></li>
+        <li><div><strong>再做增强</strong><span>图片摘要、Context、表格关联。</span></div></li>
+        <li><div><strong>再做归属</strong><span>SPU 文档级 + Chunk 级。</span></div></li>
+        <li><div><strong>最后做下游</strong><span>Embedding → 数据库 → 检索测试 → 导出。</span></div></li>
+      </ol>
+      <p>不要跳过第 1、2 步直接入库。快速入库适合试跑，不适合正式交付。</p>
+
+      <h3>交付前清单</h3>
+      <ul class="checklist">
+        <li>文件状态为“处理完成”，没有解析失败。</li>
+        <li>每个 Chunk 的类型正确，表格/图片没有被误判为文本。</li>
+        <li>过短/超长块已评估，必要时调参或合并。</li>
+        <li>Source Segments 能回到正确页码/Block。</li>
+        <li>人工修订已保存，顶栏不是“未保存”。</li>
+        <li>图片策略符合下游需求；仅引用都有文字关联。</li>
+        <li>Context 已确认或人工修改，过期 Context 已处理。</li>
+        <li>表格检索版本已保存（如使用表格检索）。</li>
+        <li>SPU 归属已确认，没有未分配/冲突。</li>
+        <li>Embedding 没有失败项，数据库写入完成。</li>
+        <li>Recall@K 自检通过（如需要）。</li>
+        <li>导出的 JSON/Markdown 不含密钥、连接串、预签名 URL 或向量值。</li>
+      </ul>
+    </section>
+
+    <section id="appendix">
+      <div class="sec-head"><span class="sec-no">A</span><h2>按钮速查与状态字典</h2></div>
+      <h3>按钮速查</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>按钮/控件</th><th>位置</th><th>作用</th></tr></thead>
+          <tbody>
+            <tr><td>添加文档</td><td>左栏</td><td>选择或拖入文件</td></tr>
+            <tr><td>开始解析</td><td>左栏</td><td>提交当前批次</td></tr>
+            <tr><td>重新解析 / 重试</td><td>文件行</td><td>重跑单份文档，可能清除旧结果</td></tr>
+            <tr><td>下载诊断包</td><td>文件行</td><td>下载脱敏诊断 JSON</td></tr>
+            <tr><td>应用参数并生成预览</td><td>切分配置</td><td>按当前参数生成 Preview</td></tr>
+            <tr><td>生成整文档 Chunk</td><td>人工模式</td><td>按人工标注生成完整 Preview</td></tr>
+            <tr><td>生成当前页</td><td>人工模式</td><td>生成部分 Preview</td></tr>
+            <tr><td>采用此 Preview</td><td>模式栏</td><td>Preview → Draft</td></tr>
+            <tr><td>放弃 Preview</td><td>模式栏</td><td>丢弃 Preview，保留 Draft</td></tr>
+            <tr><td>编辑 / 结束编辑</td><td>详情</td><td>进入/退出 Chunk 编辑</td></tr>
+            <tr><td>在光标拆分</td><td>详情</td><td>文本 Chunk 按光标拆分</td></tr>
+            <tr><td>合并下一块</td><td>详情</td><td>合并相邻同类型 Chunk</td></tr>
+            <tr><td>排除 / 恢复</td><td>详情</td><td>切换下游资格</td></tr>
+            <tr><td>恢复自动文本</td><td>详情</td><td>丢弃人工正文修改</td></tr>
+            <tr><td>保存表格</td><td>表格编辑器</td><td>保存结构化表格</td></tr>
+            <tr><td>保存表格检索版本</td><td>表格详情</td><td>保存表格与文字 Chunk 的检索关系</td></tr>
+            <tr><td>发送图片并生成摘要</td><td>图片详情</td><td>调用 VLM，可能产生费用</td></tr>
+            <tr><td>保存图片策略</td><td>图片详情</td><td>保存策略、摘要和关联</td></tr>
+            <tr><td>生成 Context</td><td>详情</td><td>单块生成</td></tr>
+            <tr><td>保存人工 Context</td><td>详情</td><td>保存人工背景说明</td></tr>
+            <tr><td>确认 Context</td><td>详情</td><td>确认待审核结果</td></tr>
+            <tr><td>生成已选 Context</td><td>Context 工具条</td><td>批量生成</td></tr>
+            <tr><td>生成 P.x 候选</td><td>Context 工具条</td><td>生成当前页推荐项</td></tr>
+            <tr><td>标记到这里</td><td>审阅进度</td><td>批量标记完成</td></tr>
+            <tr><td>分配资料归属</td><td>模式栏</td><td>打开 SPU 对话框</td></tr>
+            <tr><td>确认资料归属</td><td>SPU 对话框</td><td>固定文档级 SPU</td></tr>
+            <tr><td>生成 Markdown</td><td>模式栏/SPU 对话框</td><td>按 SPU 生成 Markdown</td></tr>
+            <tr><td>生成 Embedding</td><td>模式栏</td><td>启动向量化任务</td></tr>
+            <tr><td>写入数据库</td><td>模式栏</td><td>写入 pgvector</td></tr>
+            <tr><td>向量化并入库</td><td>模式栏</td><td>切分→向量化→入库</td></tr>
+            <tr><td>分块检索测试</td><td>模式栏</td><td>运行 Recall@K</td></tr>
+            <tr><td>检索验证</td><td>模式栏</td><td>打开智能检索应用</td></tr>
+            <tr><td>导出 JSON</td><td>顶栏</td><td>导出当前批次</td></tr>
+            <tr><td>下载 Manifest</td><td>顶栏</td><td>下载批次清单</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>状态字典</h3>
+      <div class="kv">
+        <dt>文件状态</dt><dd>待解析、上传中、排队、解析中、处理完成、已复用、失败。</dd>
+        <dt>Context 状态</dt><dd>未生成、生成中、待审核、已确认、人工修改、失败、已失效。</dd>
+        <dt>Embedding 状态</dt><dd>成功、失败、跳过；任务状态包括完成、部分失败、失败、已失效。</dd>
+        <dt>数据库状态</dt><dd>已写入、未变化、已删除、失败、跳过。</dd>
+        <dt>SPU 导出状态</dt><dd>尚未生成 Markdown、待生成、已生成、已生成含排除项、已阻断、需重新生成、失败。</dd>
+        <dt>SPU 范围</dt><dd>指定 SPU、公共资料、未分配、冲突。</dd>
+      </div>
+      <p class="lead-note">本手册基于当前部署的实际界面和接口整理。平台升级后，按钮名称、默认参数或模型配置可能变化，以页面实际显示为准。</p>
+    </section>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <span><strong>Chunk Lab 操作手册</strong> · XShipAI 电商文档审阅台</span>
+    <span>界面实测 2026-11-10 · 版本 v0.1.47</span>
+    <span>凭据不写入文档 · 以页面实际显示为准</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const bar = document.getElementById('bar');
+  const links = [...document.querySelectorAll('.toc-list a')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const toc = document.querySelector('.toc-wrap');
+  if (toc && window.innerWidth <= 1040) toc.open = false;
+  const setActive = (id) => {
+    for (const a of links) a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+  };
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      ticking = false;
+    });
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries.filter(e => e.isIntersecting);
+      if (visible.length) setActive(visible[0].target.id);
+    }, { rootMargin: '-18% 0px -68% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
+  }
+  links.forEach(a => a.addEventListener('click', () => {
+    setActive(a.getAttribute('href').slice(1));
+    if (window.innerWidth <= 1040) {
+      const d = document.querySelector('.toc-wrap');
+      if (d) d.open = false;
+    }
+  }));
+})();
+</script>
