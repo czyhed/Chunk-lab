@@ -7,10 +7,8 @@ import { pathToFileURL } from "node:url";
 
 const root = resolve(".");
 const output = resolve("output/playwright/t05-cross-page-annotation-reopened");
-const playwrightEntry = process.env.PLAYWRIGHT_ENTRY;
-const { chromium } = playwrightEntry
-  ? await import(pathToFileURL(playwrightEntry).href)
-  : await import("playwright");
+const playwrightEntry = "C:/Users/25758/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs";
+const { chromium } = await import(pathToFileURL(playwrightEntry).href);
 await mkdir(output, { recursive: true });
 
 async function freePort() {

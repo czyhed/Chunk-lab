@@ -29,8 +29,3 @@ var/
 *.err
 *.tsbuildinfo
 *.pyc
-
-# Never publish local credentials or runtime data
-.secrets/
-data/
-tls/
